@@ -1,0 +1,171 @@
+[
+  {
+    "id": "mindwatch",
+    "title": "MindWatch",
+    "subtitle": "Multimodal Seizure Prediction",
+    "year": "2026",
+    "focus": [
+      "Healthcare AI",
+      "Deep Learning",
+      "Multimodal Learning",
+      "Time-Series Analysis"
+    ],
+    "short": "A multimodal AI system designed to identify pre-ictal patterns and support early seizure-risk prediction.",
+    "problem": "Seizure warning systems require reliable interpretation of complex physiological signals before seizure onset.",
+    "solution": "MindWatch combines multimodal physiological signals with deep learning to identify pre-ictal patterns and support earlier risk prediction.",
+    "models": "CNN for deep feature extraction and BiLSTM for temporal pattern learning.",
+    "results": "Approximately 98% balanced accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "logistics-rag",
+    "title": "Logistics RAG Assistant",
+    "subtitle": "Grounded Supply-Chain Knowledge Assistant",
+    "year": "2026",
+    "focus": [
+      "Generative AI",
+      "RAG",
+      "NLP",
+      "Semantic Search"
+    ],
+    "short": "A RAG assistant that retrieves trusted logistics knowledge and generates grounded recommendations.",
+    "problem": "Logistics teams need fast access to reliable supply-chain information.",
+    "solution": "The assistant retrieves relevant knowledge, generates grounded answers, and recommends solutions.",
+    "models": "Semantic embeddings, vector retrieval, prompt engineering, and large language models.",
+    "results": "1.00 faithfulness and 0.94 answer relevancy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "mersad",
+    "title": "Mersad",
+    "subtitle": "AI-Based Safety Equipment Monitoring",
+    "year": "2023",
+    "focus": [
+      "Computer Vision",
+      "Object Detection",
+      "YOLOv8",
+      "Real-Time Monitoring"
+    ],
+    "short": "A real-time PPE monitoring system for workplace safety.",
+    "problem": "Manual PPE monitoring can be inconsistent and difficult to scale.",
+    "solution": "Mersad uses computer vision to detect PPE violations and support automated monitoring.",
+    "models": "YOLOv8 and K-means-based denoising.",
+    "results": "84.1% detection accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "arabic-news",
+    "title": "Arabic News Understanding",
+    "subtitle": "Classification, Summarization, and 5W Extraction",
+    "year": "2024",
+    "focus": [
+      "NLP",
+      "Arabic AI",
+      "Classification",
+      "Summarization"
+    ],
+    "short": "An Arabic NLP system for news classification, summarization, and information extraction.",
+    "problem": "Arabic news content is large and difficult to analyze manually at scale.",
+    "solution": "The system combines classification, summarization, and structured extraction.",
+    "models": "CAMeLBERT-MSA, AraT5, BiLSTM, and prompt-based extraction.",
+    "results": "98% accuracy and 0.98 Macro-F1.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "flight-delay",
+    "title": "Flight Delay Prediction",
+    "subtitle": "Predictive Analytics for Aviation",
+    "year": "2023",
+    "focus": [
+      "Machine Learning",
+      "Predictive Analytics",
+      "Feature Engineering"
+    ],
+    "short": "A machine learning model for predicting flight delays.",
+    "problem": "Flight delays affect passengers, operations, and resource planning.",
+    "solution": "The model combines operational and environmental features to estimate delay risk.",
+    "models": "XGBoost with feature engineering and tuning.",
+    "results": "91% prediction accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "multibehavior-rec",
+    "title": "Multi-Behavior Recommendation",
+    "subtitle": "Graph-Based Recommendation System",
+    "year": "2026",
+    "focus": [
+      "Recommendation Systems",
+      "Graph Learning",
+      "Behavior Modeling"
+    ],
+    "short": "A recommender that learns from views, favorites, carts, and purchases.",
+    "problem": "Single-behavior recommenders overlook useful user signals.",
+    "solution": "The system models multiple interaction types with behavior-aware weighting.",
+    "models": "Graph-based multi-behavior recommendation.",
+    "results": "HR@10: 0.3688 and NDCG@10: 0.2630.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "ood-scene",
+    "title": "Image Classification & OOD Detection",
+    "subtitle": "Scene Classification and Anomaly Detection",
+    "year": "2024",
+    "focus": [
+      "Computer Vision",
+      "CNN",
+      "OOD Detection",
+      "Anomaly Detection"
+    ],
+    "short": "A vision project comparing classical and deep approaches.",
+    "problem": "Vision systems can fail on unfamiliar scenes.",
+    "solution": "The project compares handcrafted and deep features and evaluates OOD detection.",
+    "models": "HOG + PCA and CNN.",
+    "results": "87% classification accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "wakib",
+    "title": "Wakib",
+    "subtitle": "AI-Powered Academic Knowledge Management",
+    "year": "2025",
+    "focus": [
+      "Education AI",
+      "Knowledge Management",
+      "NLP",
+      "RAG"
+    ],
+    "short": "An academic knowledge management system aligned with labor-market needs.",
+    "problem": "Academic programs need stronger data-driven market alignment.",
+    "solution": "Wakib identifies curriculum gaps and generates recommendations.",
+    "models": "NLP, text mining, RAG, recommendations, clustering, and dashboards.",
+    "results": "Top 3 in the Education Track.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "enterprise-ai",
+    "title": "Enterprise AI Assistant",
+    "subtitle": "Private Internal Knowledge and Service Assistant",
+    "year": "2025",
+    "focus": [
+      "Generative AI",
+      "Enterprise Search",
+      "Automation",
+      "RAG"
+    ],
+    "short": "A private enterprise assistant for knowledge retrieval and service automation.",
+    "problem": "Employees spend time searching internal systems and handling repetitive requests.",
+    "solution": "The assistant connects internal knowledge with common workflows.",
+    "models": "Enterprise retrieval, generative AI, and workflow automation.",
+    "results": "Top 5 at the SANS Hackathon.",
+    "github": "#",
+    "drive": "#"
+  }
+]
