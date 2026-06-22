@@ -18,6 +18,7 @@
     "models": "* **Multimodal Deep Learning:** Combined EEG, ECG, EMG, and motion signals within one seizure-prediction framework.\n* **Model Architecture:** CNN for physiological feature extraction and BiLSTM for temporal pattern modeling.\n* **Class Imbalance Handling:** LDAM-DRW, Weighted Random Sampling, Weighted Cross-Entropy, and Focal Loss.\n* **Signal Processing and Model Development:** Python, PyTorch, MNE, NumPy, Pandas, and Scikit-learn.",
     "results": "Several BiLSTM configurations were evaluated.\n\n| Configuration | Balanced Accuracy | Macro F1-score | Pre-ictal FPR |\n|---|---:|---:|---:|\n| Configuration 1 | 97.62% | 87.75% | 3.86% |\n| Configuration 2 | 97.76% | 87.98% | 3.57% |\n| Configuration 3 | 97.74% | 87.51% | 3.66% |\n| Configuration 4 | **97.99%** | **89.70%** | **3.23%** |\n\nConfiguration 4 achieved the strongest overall performance using LDAM-DRW with Weighted Random Sampling.",
     "demo": "https://mindwatch-main-neon.vercel.app/",
+    "video": "mindwatch-demo.mp4",
     "github": "https://github.com/jorifahad/MindWatch",
     "drive": "https://drive.google.com/drive/folders/1YnhaNWAPlS5Iw0SYGlay9Pr_v6fo0IVE?usp=sharing"
   },
