@@ -21,7 +21,7 @@ if (!line) {
   continue;
 }
 
-// Bullet list
+// Bullet lists
 if (line.startsWith("* ") || line.startsWith("- ")) {
   html += "<ul>";
 
@@ -33,13 +33,7 @@ if (line.startsWith("* ") || line.startsWith("- ")) {
     )
   ) {
     const item = lines[i].trim().slice(2);
-
-    html += `
-      <li>
-        ${inlineMarkdown(item)}
-      </li>
-    `;
-
+    html += `<li>${inlineMarkdown(item)}</li>`;
     i++;
   }
 
@@ -47,7 +41,7 @@ if (line.startsWith("* ") || line.startsWith("- ")) {
   continue;
 }
 
-// Markdown table
+// Markdown tables
 if (line.startsWith("|")) {
   const tableLines = [];
 
@@ -107,12 +101,7 @@ if (line.startsWith("|")) {
 }
 
 // Normal paragraph
-html += `
-  <p>
-    ${inlineMarkdown(line)}
-  </p>
-`;
-
+html += `<p>${inlineMarkdown(line)}</p>`;
 i++;
 ```
 
@@ -147,9 +136,7 @@ return ` <section class="detail"> <h3>Demo</h3>
 
 ```
   <div class="detail-content">
-    <p>
-      Explore the interactive ${project.title} demo.
-    </p>
+    <p>Explore the interactive ${project.title} demo.</p>
 
     <a
       class="button"
@@ -282,7 +269,6 @@ projectContainer.innerHTML = `
     </p>
 
     <h1>${project.title}</h1>
-
     <h2>${project.subtitle}</h2>
 
     <div class="tags">
@@ -323,9 +309,7 @@ if (projectContainer) {
       <h3>Error</h3>
 
       <div class="detail-content">
-        <p>
-          Unable to load the project information.
-        </p>
+        <p>Unable to load the project information.</p>
       </div>
     </section>
   `;
