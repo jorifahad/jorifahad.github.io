@@ -1,108 +1,92 @@
-const id = new URLSearchParams(window.location.search).get("id");
+const projectContainer = document.getElementById("project");
+const projectId = new URLSearchParams(window.location.search).get("id");
 
-function inlineMarkdown(text = "") {
-return String(text).replace(
-/**(.*?)**/g,
-"<strong>$1</strong>"
-);
+function formatBold(text = "") {
+const boldPattern = new RegExp("\*\*(.*?)\*\*", "g");
+return String(text).replace(boldPattern, "<strong>$1</strong>");
 }
 
-function renderContent(text = "") {
-const lines = String(text).split("\n");
+function renderText(content = "") {
+const lines = String(content).split("\n");
 let html = "";
-let i = 0;
+let index = 0;
 
-while (i < lines.length) {
-const line = lines[i].trim();
+while (index < lines.length) {
+const line = lines[index].trim();
 
 ```
-if (!line) {
-  i++;
+if (line === "") {
+  index++;
   continue;
 }
 
-// Bullet lists
 if (line.startsWith("* ") || line.startsWith("- ")) {
   html += "<ul>";
 
   while (
-    i < lines.length &&
+    index < lines.length &&
     (
-      lines[i].trim().startsWith("* ") ||
-      lines[i].trim().startsWith("- ")
+      lines[index].trim().startsWith("* ") ||
+      lines[index].trim().startsWith("- ")
     )
   ) {
-    const item = lines[i].trim().slice(2);
-    html += `<li>${inlineMarkdown(item)}</li>`;
-    i++;
+    const item = lines[index].trim().substring(2);
+    html += `<li>${formatBold(item)}</li>`;
+    index++;
   }
 
   html += "</ul>";
   continue;
 }
 
-// Markdown tables
 if (line.startsWith("|")) {
   const tableLines = [];
 
   while (
-    i < lines.length &&
-    lines[i].trim().startsWith("|")
+    index < lines.length &&
+    lines[index].trim().startsWith("|")
   ) {
-    tableLines.push(lines[i].trim());
-    i++;
+    tableLines.push(lines[index].trim());
+    index++;
   }
 
-  const rows = tableLines.map((row) =>
-    row
-      .slice(1, -1)
+  const rows = tableLines.map((row) => {
+    return row
+      .substring(1, row.length - 1)
       .split("|")
-      .map((cell) => cell.trim())
-  );
+      .map((cell) => cell.trim());
+  });
 
   const headers = rows[0] || [];
   const bodyRows = rows.slice(2);
 
-  html += `
-    <div class="table-wrapper">
-      <table class="results-table">
-        <thead>
-          <tr>
-            ${headers
-              .map(
-                (header) =>
-                  `<th>${inlineMarkdown(header)}</th>`
-              )
-              .join("")}
-          </tr>
-        </thead>
+  html += '<div class="table-wrapper">';
+  html += '<table class="results-table">';
+  html += "<thead><tr>";
 
-        <tbody>
-          ${bodyRows
-            .map(
-              (row) => `
-                <tr>
-                  ${row
-                    .map(
-                      (cell) =>
-                        `<td>${inlineMarkdown(cell)}</td>`
-                    )
-                    .join("")}
-                </tr>
-              `
-            )
-            .join("")}
-        </tbody>
-      </table>
-    </div>
-  `;
+  headers.forEach((header) => {
+    html += `<th>${formatBold(header)}</th>`;
+  });
 
+  html += "</tr></thead>";
+  html += "<tbody>";
+
+  bodyRows.forEach((row) => {
+    html += "<tr>";
+
+    row.forEach((cell) => {
+      html += `<td>${formatBold(cell)}</td>`;
+    });
+
+    html += "</tr>";
+  });
+
+  html += "</tbody></table></div>";
   continue;
 }
 
-// Normal paragraph
-html += `<p>${inlineMarkdown(line)}</p>`;
-i++;
+html += `<p>${formatBold(line)}</p>`;
+index++;
 ```
 
 }
@@ -110,210 +94,148 @@ i++;
 return html;
 }
 
-function createProjectSection(title, content) {
+function createSection(title, content) {
 if (!content) {
 return "";
 }
 
-return ` <section class="detail"> <h3>${title}</h3>
-
-```
-  <div class="detail-content">
-    ${renderContent(content)}
-  </div>
-</section>
-```
-
-`;
+return `     <section class="detail">       <h3>${title}</h3>       <div class="detail-content">
+        ${renderText(content)}       </div>     </section>
+  `;
 }
 
-function createDemoSection(project) {
+function createDemo(project) {
 if (!project.demo || project.demo === "#") {
 return "";
 }
 
-return ` <section class="detail"> <h3>Demo</h3>
-
-```
-  <div class="detail-content">
-    <p>Explore the interactive ${project.title} demo.</p>
-
-    <a
-      class="button"
-      href="${project.demo}"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Open Live Demo
-    </a>
-  </div>
-</section>
-```
-
-`;
+return `     <section class="detail">       <h3>Demo</h3>       <div class="detail-content">         <p>Explore the interactive ${project.title} demo.</p>         <a
+          class="button"
+          href="${project.demo}"
+          target="_blank"
+          rel="noopener noreferrer"         >
+          Open Live Demo         </a>       </div>     </section>
+  `;
 }
 
-function createGitHubButton(project) {
-if (!project.github || project.github === "#") {
-return "";
-}
+function createActions(project) {
+let actions = "";
 
-const buttonText =
+if (project.github && project.github !== "#") {
+const label =
 project.id === "orbscope"
 ? "View Interactive Prototype"
 : "View Full Code";
 
-return `     <a
-      class="button"
-      href="${project.github}"
-      target="_blank"
-      rel="noopener noreferrer"     >
-      ${buttonText}     </a>
-  `;
-}
-
-function createDriveButton(project) {
-if (!project.drive || project.drive === "#") {
-return "";
-}
-
-return `     <a
-      class="ghost"
-      href="${project.drive}"
-      target="_blank"
-      rel="noopener noreferrer"     >
-      View Project Files     </a>
-  `;
-}
-
-function createPaperButton(project) {
-if (!project.paper || project.paper === "#") {
-return "";
-}
-
-return `     <a
-      class="ghost"
-      href="${project.paper}"
-      target="_blank"
-      rel="noopener noreferrer"     >
-      View Research Paper     </a>
-  `;
-}
-
-fetch("projects.json")
-.then((response) => {
-if (!response.ok) {
-throw new Error("Could not load projects.json");
-}
-
 ```
-return response.json();
-```
-
-})
-.then((items) => {
-if (!Array.isArray(items) || items.length === 0) {
-throw new Error("No projects were found");
-}
-
-```
-const project =
-  items.find((item) => item.id === id) || items[0];
-
-document.title =
-  `${project.title} | Jori Fahad Baaljahr`;
-
-const shortSection = createProjectSection(
-  "Short Description",
-  project.short
-);
-
-const problemSection = createProjectSection(
-  "Problem",
-  project.problem
-);
-
-const solutionSection = createProjectSection(
-  "Solution",
-  project.solution
-);
-
-const modelsSection = createProjectSection(
-  "Models & Technologies",
-  project.models
-);
-
-const resultsSection = createProjectSection(
-  "Results",
-  project.results
-);
-
-const demoSection = createDemoSection(project);
-const githubButton = createGitHubButton(project);
-const driveButton = createDriveButton(project);
-const paperButton = createPaperButton(project);
-
-const projectContainer =
-  document.getElementById("project");
-
-if (!projectContainer) {
-  throw new Error(
-    'Element with id="project" was not found'
-  );
-}
-
-projectContainer.innerHTML = `
-  <section class="projectHero">
-    <p class="kicker">
-      ${project.year} · AI Project
-    </p>
-
-    <h1>${project.title}</h1>
-    <h2>${project.subtitle}</h2>
-
-    <div class="tags">
-      ${(project.focus || [])
-        .map((item) => `<span>${item}</span>`)
-        .join("")}
-    </div>
-  </section>
-
-  <div class="cover"></div>
-
-  ${shortSection}
-  ${problemSection}
-  ${solutionSection}
-  ${modelsSection}
-  ${demoSection}
-  ${resultsSection}
-
-  <div class="actions">
-    ${githubButton}
-    ${paperButton}
-    ${driveButton}
-  </div>
+actions += `
+  <a
+    class="button"
+    href="${project.github}"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    ${label}
+  </a>
 `;
 ```
 
-})
-.catch((error) => {
-console.error(error);
+}
+
+if (project.paper && project.paper !== "#") {
+actions += `       <a
+        class="ghost"
+        href="${project.paper}"
+        target="_blank"
+        rel="noopener noreferrer"       >
+        View Research Paper       </a>
+    `;
+}
+
+if (project.drive && project.drive !== "#") {
+actions += `       <a
+        class="ghost"
+        href="${project.drive}"
+        target="_blank"
+        rel="noopener noreferrer"       >
+        View Project Files       </a>
+    `;
+}
+
+return actions;
+}
+
+if (!projectContainer) {
+console.error('Element with id="project" was not found.');
+} else {
+projectContainer.innerHTML = "<p>Loading project...</p>";
+
+fetch("./projects.json")
+.then((response) => {
+if (!response.ok) {
+throw new Error(
+`projects.json could not be loaded: ${response.status}`
+);
+}
 
 ```
-const projectContainer =
-  document.getElementById("project");
+  return response.json();
+})
+.then((projects) => {
+  if (!Array.isArray(projects) || projects.length === 0) {
+    throw new Error("projects.json does not contain projects.");
+  }
 
-if (projectContainer) {
+  const project =
+    projects.find((item) => item.id === projectId) ||
+    projects[0];
+
+  document.title =
+    `${project.title} | Jori Fahad Baaljahr`;
+
+  const tags = Array.isArray(project.focus)
+    ? project.focus
+        .map((item) => `<span>${item}</span>`)
+        .join("")
+    : "";
+
+  projectContainer.innerHTML = `
+    <section class="projectHero">
+      <p class="kicker">${project.year} · AI Project</p>
+      <h1>${project.title}</h1>
+      <h2>${project.subtitle}</h2>
+
+      <div class="tags">
+        ${tags}
+      </div>
+    </section>
+
+    <div class="cover"></div>
+
+    ${createSection("Short Description", project.short)}
+    ${createSection("Problem", project.problem)}
+    ${createSection("Solution", project.solution)}
+    ${createSection("Models & Technologies", project.models)}
+    ${createDemo(project)}
+    ${createSection("Results", project.results)}
+
+    <div class="actions">
+      ${createActions(project)}
+    </div>
+  `;
+})
+.catch((error) => {
+  console.error(error);
+
   projectContainer.innerHTML = `
     <section class="detail">
       <h3>Error</h3>
-
       <div class="detail-content">
-        <p>Unable to load the project information.</p>
+        <p>${error.message}</p>
       </div>
     </section>
   `;
-}
+});
 ```
 
-});
+}
