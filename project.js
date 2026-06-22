@@ -1,14 +1,11 @@
 const id = new URLSearchParams(location.search).get("id");
 
-function formatBold(text = "") {
-return String(text).replace(
-new RegExp("\*\*(.*?)\*\*", "g"),
-"<strong>$1</strong>"
-);
+function cleanBold(text) {
+return String(text || "").split("**").join("");
 }
 
-function renderContent(text = "") {
-const lines = String(text).split("\n");
+function renderContent(text) {
+const lines = String(text || "").split("\n");
 let html = "";
 let i = 0;
 
@@ -21,6 +18,7 @@ if (!line) {
   continue;
 }
 
+// Bullet list
 if (line.startsWith("* ") || line.startsWith("- ")) {
   html += "<ul>";
 
@@ -31,9 +29,8 @@ if (line.startsWith("* ") || line.startsWith("- ")) {
       lines[i].trim().startsWith("- ")
     )
   ) {
-    const item = lines[i].trim().slice(2);
-
-    html += `<li>${formatBold(item)}</li>`;
+    const item = cleanBold(lines[i].trim().slice(2));
+    html += `<li>${item}</li>`;
     i++;
   }
 
@@ -41,6 +38,7 @@ if (line.startsWith("* ") || line.startsWith("- ")) {
   continue;
 }
 
+// Table
 if (line.startsWith("|")) {
   const tableLines = [];
 
@@ -56,7 +54,7 @@ if (line.startsWith("|")) {
     row
       .slice(1, -1)
       .split("|")
-      .map((cell) => cell.trim())
+      .map((cell) => cleanBold(cell.trim()))
   );
 
   const headers = rows[0] || [];
@@ -67,20 +65,15 @@ if (line.startsWith("|")) {
       <table class="results-table">
         <thead>
           <tr>
-            ${headers
-              .map((header) => `<th>${formatBold(header)}</th>`)
-              .join("")}
+            ${headers.map((cell) => `<th>${cell}</th>`).join("")}
           </tr>
         </thead>
-
         <tbody>
           ${bodyRows
             .map(
               (row) => `
                 <tr>
-                  ${row
-                    .map((cell) => `<td>${formatBold(cell)}</td>`)
-                    .join("")}
+                  ${row.map((cell) => `<td>${cell}</td>`).join("")}
                 </tr>
               `
             )
@@ -93,7 +86,7 @@ if (line.startsWith("|")) {
   continue;
 }
 
-html += `<p>${formatBold(line)}</p>`;
+html += `<p>${cleanBold(line)}</p>`;
 i++;
 ```
 
@@ -103,16 +96,7 @@ return html;
 }
 
 fetch("projects.json")
-.then((response) => {
-if (!response.ok) {
-throw new Error("Could not load projects.json");
-}
-
-```
-return response.json();
-```
-
-})
+.then((response) => response.json())
 .then((items) => {
 const p = items.find((item) => item.id === id) || items[0];
 
@@ -132,10 +116,8 @@ const demoSection =
     ? `
       <section class="detail">
         <h3>Demo</h3>
-
         <div class="detail-content">
           <p>Explore the interactive ${p.title} demo.</p>
-
           <a
             class="button"
             href="${p.demo}"
@@ -158,11 +140,9 @@ const githubButton =
         target="_blank"
         rel="noopener noreferrer"
       >
-        ${
-          p.id === "orbscope"
-            ? "View Interactive Prototype"
-            : "View Full Code"
-        }
+        ${p.id === "orbscope"
+          ? "View Interactive Prototype"
+          : "View Full Code"}
       </a>
     `
     : "";
@@ -184,7 +164,6 @@ const driveButton =
 document.getElementById("project").innerHTML = `
   <section class="projectHero">
     <p class="kicker">${p.year} · AI Project</p>
-
     <h1>${p.title}</h1>
     <h2>${p.subtitle}</h2>
 
@@ -202,7 +181,6 @@ document.getElementById("project").innerHTML = `
       ([title, content]) => `
         <section class="detail">
           <h3>${title}</h3>
-
           <div class="detail-content">
             ${renderContent(content)}
           </div>
@@ -228,9 +206,8 @@ console.error(error);
 document.getElementById("project").innerHTML = `
   <section class="detail">
     <h3>Error</h3>
-
     <div class="detail-content">
-      <p>Unable to load the project information.</p>
+      <p>${error.message}</p>
     </div>
   </section>
 `;
