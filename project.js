@@ -1,11 +1,14 @@
 const id = new URLSearchParams(window.location.search).get("id");
 
 function inlineMarkdown(text = "") {
-return text.replace(/**(.*?)**/g, "<strong>$1</strong>");
+return String(text).replace(
+/**(.*?)**/g,
+"<strong>$1</strong>"
+);
 }
 
 function renderContent(text = "") {
-const lines = text.split("\n");
+const lines = String(text).split("\n");
 let html = "";
 let i = 0;
 
@@ -19,12 +22,24 @@ if (!line) {
 }
 
 // Bullet list
-if (line.startsWith("* ")) {
+if (line.startsWith("* ") || line.startsWith("- ")) {
   html += "<ul>";
 
-  while (i < lines.length && lines[i].trim().startsWith("* ")) {
+  while (
+    i < lines.length &&
+    (
+      lines[i].trim().startsWith("* ") ||
+      lines[i].trim().startsWith("- ")
+    )
+  ) {
     const item = lines[i].trim().slice(2);
-    html += `<li>${inlineMarkdown(item)}</li>`;
+
+    html += `
+      <li>
+        ${inlineMarkdown(item)}
+      </li>
+    `;
+
     i++;
   }
 
@@ -36,7 +51,10 @@ if (line.startsWith("* ")) {
 if (line.startsWith("|")) {
   const tableLines = [];
 
-  while (i < lines.length && lines[i].trim().startsWith("|")) {
+  while (
+    i < lines.length &&
+    lines[i].trim().startsWith("|")
+  ) {
     tableLines.push(lines[i].trim());
     i++;
   }
@@ -48,7 +66,7 @@ if (line.startsWith("|")) {
       .map((cell) => cell.trim())
   );
 
-  const headers = rows[0];
+  const headers = rows[0] || [];
   const bodyRows = rows.slice(2);
 
   html += `
@@ -57,7 +75,10 @@ if (line.startsWith("|")) {
         <thead>
           <tr>
             ${headers
-              .map((header) => `<th>${inlineMarkdown(header)}</th>`)
+              .map(
+                (header) =>
+                  `<th>${inlineMarkdown(header)}</th>`
+              )
               .join("")}
           </tr>
         </thead>
@@ -68,7 +89,10 @@ if (line.startsWith("|")) {
               (row) => `
                 <tr>
                   ${row
-                    .map((cell) => `<td>${inlineMarkdown(cell)}</td>`)
+                    .map(
+                      (cell) =>
+                        `<td>${inlineMarkdown(cell)}</td>`
+                    )
                     .join("")}
                 </tr>
               `
@@ -83,13 +107,110 @@ if (line.startsWith("|")) {
 }
 
 // Normal paragraph
-html += `<p>${inlineMarkdown(line)}</p>`;
+html += `
+  <p>
+    ${inlineMarkdown(line)}
+  </p>
+`;
+
 i++;
 ```
 
 }
 
 return html;
+}
+
+function createProjectSection(title, content) {
+if (!content) {
+return "";
+}
+
+return ` <section class="detail"> <h3>${title}</h3>
+
+```
+  <div class="detail-content">
+    ${renderContent(content)}
+  </div>
+</section>
+```
+
+`;
+}
+
+function createDemoSection(project) {
+if (!project.demo || project.demo === "#") {
+return "";
+}
+
+return ` <section class="detail"> <h3>Demo</h3>
+
+```
+  <div class="detail-content">
+    <p>
+      Explore the interactive ${project.title} demo.
+    </p>
+
+    <a
+      class="button"
+      href="${project.demo}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open Live Demo
+    </a>
+  </div>
+</section>
+```
+
+`;
+}
+
+function createGitHubButton(project) {
+if (!project.github || project.github === "#") {
+return "";
+}
+
+const buttonText =
+project.id === "orbscope"
+? "View Interactive Prototype"
+: "View Full Code";
+
+return `     <a
+      class="button"
+      href="${project.github}"
+      target="_blank"
+      rel="noopener noreferrer"     >
+      ${buttonText}     </a>
+  `;
+}
+
+function createDriveButton(project) {
+if (!project.drive || project.drive === "#") {
+return "";
+}
+
+return `     <a
+      class="ghost"
+      href="${project.drive}"
+      target="_blank"
+      rel="noopener noreferrer"     >
+      View Project Files     </a>
+  `;
+}
+
+function createPaperButton(project) {
+if (!project.paper || project.paper === "#") {
+return "";
+}
+
+return `     <a
+      class="ghost"
+      href="${project.paper}"
+      target="_blank"
+      rel="noopener noreferrer"     >
+      View Research Paper     </a>
+  `;
 }
 
 fetch("projects.json")
@@ -104,105 +225,85 @@ return response.json();
 
 })
 .then((items) => {
-const p = items.find((project) => project.id === id) || items[0];
+if (!Array.isArray(items) || items.length === 0) {
+throw new Error("No projects were found");
+}
 
 ```
-document.title = `${p.title} | Jori Fahad Baaljahr`;
+const project =
+  items.find((item) => item.id === id) || items[0];
 
-const normalSections = [
-  ["Short Description", p.short],
-  ["Problem", p.problem],
-  ["Solution", p.solution],
-  ["Models & Technologies", p.models],
-  ["Results", p.results]
-];
+document.title =
+  `${project.title} | Jori Fahad Baaljahr`;
 
-const demoSection =
-  p.demo && p.demo !== "#"
-    ? `
-      <section class="detail">
-        <h3>Demo</h3>
+const shortSection = createProjectSection(
+  "Short Description",
+  project.short
+);
 
-        <div class="detail-content">
-          <p>Explore the interactive ${p.title} demo.</p>
+const problemSection = createProjectSection(
+  "Problem",
+  project.problem
+);
 
-          <a
-            class="button"
-            href="${p.demo}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open Live Demo
-          </a>
-        </div>
-      </section>
-    `
-    : "";
+const solutionSection = createProjectSection(
+  "Solution",
+  project.solution
+);
 
-const githubButton =
-  p.github && p.github !== "#"
-    ? `
-      <a
-        class="button"
-        href="${p.github}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ${
-          p.id === "orbscope"
-            ? "View Interactive Prototype"
-            : "View Full Code"
-        }
-      </a>
-    `
-    : "";
+const modelsSection = createProjectSection(
+  "Models & Technologies",
+  project.models
+);
 
-const driveButton =
-  p.drive && p.drive !== "#"
-    ? `
-      <a
-        class="ghost"
-        href="${p.drive}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        View Project Files
-      </a>
-    `
-    : "";
+const resultsSection = createProjectSection(
+  "Results",
+  project.results
+);
 
-document.getElementById("project").innerHTML = `
+const demoSection = createDemoSection(project);
+const githubButton = createGitHubButton(project);
+const driveButton = createDriveButton(project);
+const paperButton = createPaperButton(project);
+
+const projectContainer =
+  document.getElementById("project");
+
+if (!projectContainer) {
+  throw new Error(
+    'Element with id="project" was not found'
+  );
+}
+
+projectContainer.innerHTML = `
   <section class="projectHero">
-    <p class="kicker">${p.year} · AI Project</p>
+    <p class="kicker">
+      ${project.year} · AI Project
+    </p>
 
-    <h1>${p.title}</h1>
-    <h2>${p.subtitle}</h2>
+    <h1>${project.title}</h1>
+
+    <h2>${project.subtitle}</h2>
 
     <div class="tags">
-      ${p.focus.map((item) => `<span>${item}</span>`).join("")}
+      ${(project.focus || [])
+        .map((item) => `<span>${item}</span>`)
+        .join("")}
     </div>
   </section>
 
   <div class="cover"></div>
 
-  ${normalSections
-    .map(
-      ([title, content]) => `
-        <section class="detail">
-          <h3>${title}</h3>
-
-          <div class="detail-content">
-            ${renderContent(content)}
-          </div>
-        </section>
-      `
-    )
-    .join("")}
-
+  ${shortSection}
+  ${problemSection}
+  ${solutionSection}
+  ${modelsSection}
   ${demoSection}
+  ${resultsSection}
 
   <div class="actions">
     ${githubButton}
+    ${paperButton}
     ${driveButton}
   </div>
 `;
@@ -213,15 +314,22 @@ document.getElementById("project").innerHTML = `
 console.error(error);
 
 ```
-document.getElementById("project").innerHTML = `
-  <section class="detail">
-    <h3>Error</h3>
+const projectContainer =
+  document.getElementById("project");
 
-    <div class="detail-content">
-      <p>Unable to load the project information.</p>
-    </div>
-  </section>
-`;
+if (projectContainer) {
+  projectContainer.innerHTML = `
+    <section class="detail">
+      <h3>Error</h3>
+
+      <div class="detail-content">
+        <p>
+          Unable to load the project information.
+        </p>
+      </div>
+    </section>
+  `;
+}
 ```
 
 });
