@@ -1,209 +1,209 @@
 [
-{
-"id": "mindwatch",
-"title": "MindWatch",
-"subtitle": "Multimodal Seizure Prediction",
-"year": "2026",
-"focus": [
-"Healthcare AI",
-"Multimodal Learning",
-"Deep Learning",
-"Time-Series Modelling",
-"Physiological Signal Processing",
-"Machine Learning"
-],
-"short": "MindWatch is a deep learning-based multimodal seizure prediction framework that analyzes EEG, ECG, EMG, and motion signals collected from wearable monitoring systems. The system combines spatial feature extraction and temporal modelling to identify seizure-related physiological patterns.",
-"problem": "Drug-resistant epilepsy patients may experience seizures without sufficient warning. Single-signal monitoring systems can miss important physiological changes, while severe class imbalance can cause models to favor normal states and increase false alarms.",
-"solution": "MindWatch combines multiple physiological modalities within one prediction framework. CNN models extract spatial and hidden representations from physiological signals, while BiLSTM networks capture temporal dependencies across consecutive time windows. The framework also applies data-level preprocessing and model-level imbalance handling to improve minority-class detection and reduce false predictions.",
-"models": "Multimodal deep learning using EEG, ECG, EMG, and motion signals. CNN is used for physiological feature extraction, while BiLSTM captures temporal patterns. Class imbalance is handled using LDAM-DRW, Weighted Random Sampling, Weighted Cross-Entropy, and Focal Loss. The system was developed using Python, PyTorch, MNE, NumPy, Pandas, and Scikit-learn.",
-"results": "The best-performing configuration achieved 97.99% balanced accuracy, 89.70% Macro F1-score, and a 3.23% pre-ictal false-positive rate using LDAM-DRW with Weighted Random Sampling.",
-"demo": "https://mindwatch-main-neon.vercel.app/",
-"github": "https://github.com/jorifahad/MindWatch",
-"drive": "https://drive.google.com/drive/folders/1YnhaNWAPlS5Iw0SYGlay9Pr_v6fo0IVE?usp=sharing"
-},
-{
-"id": "logistics-rag",
-"title": "Logistics RAG Assistant",
-"subtitle": "Grounded Supply-Chain Knowledge Assistant",
-"year": "2026",
-"focus": [
-"Generative AI",
-"RAG",
-"NLP",
-"Semantic Search",
-"Vector Databases",
-"Prompt Engineering",
-"RAG Evaluation",
-"LLM Applications",
-"Recommendation Systems"
-],
-"short": "A logistics RAG assistant that retrieves trusted supply-chain information, generates grounded answers, and recommends relevant solutions.",
-"problem": "Supply-chain information is often scattered across different sources, making reliable retrieval and decision support difficult.",
-"solution": "The assistant retrieves relevant knowledge through semantic search, generates grounded responses, and recommends solutions based on user needs.",
-"models": "Semantic embeddings, vector retrieval, prompt engineering, LLM generation, and RAGAS evaluation.",
-"results": "Achieved 1.00 faithfulness and 0.94 answer relevancy.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "enterprise-ai",
-"title": "Enterprise AI Assistant",
-"subtitle": "SANS Hackathon Project",
-"year": "2025",
-"focus": [
-"Enterprise AI",
-"Generative AI",
-"Knowledge Retrieval",
-"Workflow Automation",
-"Microsoft Ecosystem"
-],
-"short": "A private Microsoft-based AI assistant that retrieves internal knowledge and automates employee service workflows.",
-"problem": "Employees lose time searching internal documents and completing repetitive service requests across disconnected systems.",
-"solution": "The assistant retrieves internal knowledge and supports workflows such as IT tickets, leave requests, and policy queries.",
-"models": "Private enterprise retrieval, generative AI, knowledge search, and workflow automation within the Microsoft ecosystem.",
-"results": "Selected among the Top 5 projects at the SANS Hackathon.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "arabic-news",
-"title": "Arabic News Understanding System",
-"subtitle": "Classification, Summarisation, and 5W Extraction",
-"year": "2024",
-"focus": [
-"Arabic NLP",
-"Text Classification",
-"Summarisation",
-"Information Extraction",
-"Transformer Fine-Tuning"
-],
-"short": "An Arabic NLP system for news classification, summarisation, and structured 5W information extraction.",
-"problem": "Arabic news content is large and varied, making manual classification, summarisation, and information extraction difficult at scale.",
-"solution": "The system combines transformer-based classification, abstractive summarisation, and structured extraction.",
-"models": "CAMeLBERT-MSA for classification, AraT5 for summarisation, and Gemini for 5W extraction.",
-"results": "Achieved 98% classification accuracy.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "ood-scene",
-"title": "Image Classification and OOD Scene Detection",
-"subtitle": "Classification and Unseen-Scene Detection",
-"year": "2024",
-"focus": [
-"Computer Vision",
-"Image Classification",
-"OOD Detection",
-"Deep Learning"
-],
-"short": "A CNN-based image classification and out-of-distribution detection system for unseen scenes.",
-"problem": "Image classifiers may produce overconfident predictions when they encounter scenes outside their training distribution.",
-"solution": "The project combines image classification with OOD detection to reduce confident errors on unseen images.",
-"models": "CNN-based image classification with out-of-distribution detection.",
-"results": "Achieved 87% classification accuracy.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "mersad",
-"title": "Mersad",
-"subtitle": "AI-Based Safety Equipment Monitoring",
-"year": "2023",
-"focus": [
-"Computer Vision",
-"Object Detection",
-"PPE Detection",
-"Real-Time Monitoring",
-"Machine Learning"
-],
-"short": "A real-time PPE monitoring system for workplace safety.",
-"problem": "Manual PPE monitoring can be inconsistent and difficult to scale across active work environments.",
-"solution": "Mersad detects personal protective equipment and supports automated safety monitoring in real time.",
-"models": "YOLOv8 for object detection and K-means denoising for image enhancement.",
-"results": "Achieved 84.1% detection accuracy.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "flight-delay",
-"title": "Flight Delay Prediction",
-"subtitle": "Predictive Analytics for Aviation",
-"year": "2023",
-"focus": [
-"Predictive Analytics",
-"Machine Learning",
-"Data Analysis",
-"Feature Engineering",
-"Model Optimisation"
-],
-"short": "An XGBoost model for predicting flight delays from operational, weather, schedule, and airport data.",
-"problem": "Flight delays disrupt passenger experience, airline operations, and resource planning.",
-"solution": "The model combines operational and environmental variables to estimate delay risk before departure.",
-"models": "XGBoost with feature engineering, feature selection, and hyperparameter optimisation.",
-"results": "Achieved 91% prediction accuracy.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "tunnel-robot",
-"title": "Underground Tunnel Explorer Robot",
-"subtitle": "Autonomous Robotics Exploration System",
-"year": "2025",
-"focus": [
-"Robotics",
-"Autonomous Navigation",
-"Sensor Fusion",
-"Embedded Systems",
-"Computer Vision",
-"IoT"
-],
-"short": "An autonomous robot designed to explore narrow underground passages while avoiding obstacles, monitoring stability, and reporting outdoor location data.",
-"problem": "Unknown underground passages can be narrow, unstable, and unsafe for direct human exploration.",
-"solution": "The robot combines multi-directional ultrasonic scanning, IMU-based tilt protection, HuskyLens target detection, motor control, and ESP32-based GPS and Wi-Fi telemetry.",
-"models": "Rule-based sensor fusion using Arduino, ESP32, HC-SR04 ultrasonic sensing, MPU6050 IMU, HuskyLens, GPS, and L298N motor control.",
-"results": "Validated autonomous obstacle avoidance, safe-path selection, tilt protection, visual target following, and outdoor GPS telemetry.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "bilingual-ocr",
-"title": "Arabic-English OCR",
-"subtitle": "SDM Artificial Intelligence Training Project",
-"year": "2025",
-"focus": [
-"OCR",
-"Vision-Language Models",
-"Prompt Engineering",
-"Arabic AI",
-"Document Intelligence",
-"Python"
-],
-"short": "A bilingual OCR workflow for extracting structured Arabic-English text from complex documents while preserving reading order and layout.",
-"problem": "Traditional OCR systems often struggle with mixed Arabic-English documents, complex layouts, tables, and right-to-left reading order.",
-"solution": "The project evaluated multiple OCR approaches, then used Gemma 3 12B with prompt engineering and Python automation to improve bilingual extraction and document structure preservation.",
-"models": "Gemma 3 12B vision-language model, Surya OCR, and comparative evaluation of traditional OCR tools.",
-"results": "Delivered a reusable OCR workflow supporting multiple document categories and structured bilingual extraction.",
-"github": "#",
-"drive": "#"
-},
-{
-"id": "orbscope",
-"title": "OrbScope",
-"subtitle": "NASA Space Apps Hackathon Project",
-"year": "2023",
-"focus": [
-"Space Technology",
-"Earth Observation",
-"Data Visualisation",
-"UX Prototype",
-"Innovation"
-],
-"short": "A space-focused interactive prototype developed for the NASA Space Apps Hackathon.",
-"problem": "Space and Earth-observation information can be difficult for general users to explore through complex technical interfaces.",
-"solution": "OrbScope presents the concept through an interactive prototype designed to make information exploration clearer and more accessible.",
-"models": "Interactive Figma prototype and user-centred interface design.",
-"results": "Ranked among the Top 10 teams at the NASA Space Apps Hackathon.",
-"github": "https://www.figma.com/proto/juLULsOEuhuDDFNojK2cbm/ORBSCOPE?node-id=3-18&starting-point-node-id=41%3A3&t=ZPjHsrlxmrQJVhWG-1",
-"drive": "#"
-}
+  {
+    "id": "mindwatch",
+    "title": "MindWatch",
+    "subtitle": "Multimodal Seizure Prediction",
+    "year": "2026",
+    "focus": [
+    "Healthcare AI",
+    "Multimodal Learning",
+    "Deep Learning",
+    "Time-Series Modelling",
+    "Physiological Signal Processing",
+    "Machine Learning"
+  ],
+    "short": "MindWatch is a deep learning-based multimodal seizure prediction framework that analyzes EEG, ECG, EMG, and motion signals collected from wearable monitoring systems. The system combines spatial feature extraction and temporal modeling to identify seizure-related physiological patterns.",
+    "problem": "Drug-resistant epilepsy patients may experience seizures without sufficient warning. Single-signal monitoring systems can miss important physiological changes, while severe class imbalance can cause models to favor normal states and increase false alarms.",
+    "solution": "MindWatch combines multiple physiological modalities within one prediction framework. CNN models extract spatial and hidden representations from physiological signals, while BiLSTM networks capture temporal dependencies across consecutive time windows. The framework also applies data-level preprocessing and model-level imbalance handling to improve minority-class detection and reduce false predictions.",
+    "models": "Multimodal deep learning using EEG, ECG, EMG, and motion signals. CNN is used for physiological feature extraction, while BiLSTM captures temporal patterns. Class imbalance is handled using LDAM-DRW, Weighted Random Sampling, Weighted Cross-Entropy, and Focal Loss. The system was developed using Python, PyTorch, MNE, NumPy, Pandas, and Scikit-learn.",
+    "results": "The best-performing configuration achieved 97.99% balanced accuracy, 89.70% Macro F1-score, and a 3.23% pre-ictal false-positive rate using LDAM-DRW with Weighted Random Sampling.",
+    "demo": "https://mindwatch-main-neon.vercel.app/",
+    "github": "https://github.com/jorifahad/MindWatch",
+    "drive": "https://drive.google.com/drive/folders/1YnhaNWAPlS5Iw0SYGlay9Pr_v6fo0IVE?usp=sharing"
+  },
+  {
+    "id": "logistics-rag",
+    "title": "Logistics RAG Assistant",
+    "subtitle": "Grounded Supply-Chain Knowledge Assistant",
+    "year": "2026",
+    "focus": [
+      "Generative AI",
+      "RAG",
+      "NLP",
+      "Semantic Search",
+      "Vector Databases",
+      "Prompt Engineering",
+      "RAG Evaluation",
+      "LLM Applications",
+      "Recommendation Systems"
+    ],
+    "short": "A logistics RAG assistant that retrieves trusted supply-chain information, generates grounded answers, and recommends relevant solutions.",
+    "problem": "Supply-chain information is often scattered across different sources, making reliable retrieval and decision support difficult.",
+    "solution": "The assistant retrieves relevant knowledge through semantic search, generates grounded responses, and recommends solutions based on user needs.",
+    "models": "Semantic embeddings, vector retrieval, prompt engineering, LLM generation, and RAGAS evaluation.",
+    "results": "Achieved 1.00 faithfulness and 0.94 answer relevancy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "enterprise-ai",
+    "title": "Enterprise AI Assistant",
+    "subtitle": "SANS Hackathon Project",
+    "year": "2025",
+    "focus": [
+      "Enterprise AI",
+      "Generative AI",
+      "Knowledge Retrieval",
+      "Workflow Automation",
+      "Microsoft Ecosystem"
+    ],
+    "short": "A private Microsoft-based AI assistant that retrieves internal knowledge and automates employee service workflows.",
+    "problem": "Employees lose time searching internal documents and completing repetitive service requests across disconnected systems.",
+    "solution": "The assistant retrieves internal knowledge and supports workflows such as IT tickets, leave requests, and policy queries.",
+    "models": "Private enterprise retrieval, generative AI, knowledge search, and workflow automation within the Microsoft ecosystem.",
+    "results": "Selected among the Top 5 projects at the SANS Hackathon.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "arabic-news",
+    "title": "Arabic News Understanding System",
+    "subtitle": "Classification, Summarisation, and 5W Extraction",
+    "year": "2024",
+    "focus": [
+      "Arabic NLP",
+      "Text Classification",
+      "Summarisation",
+      "Information Extraction",
+      "Transformer Fine-Tuning"
+    ],
+    "short": "An Arabic NLP system for news classification, summarisation, and structured 5W information extraction.",
+    "problem": "Arabic news content is large and varied, making manual classification, summarisation, and information extraction difficult at scale.",
+    "solution": "The system combines transformer-based classification, abstractive summarisation, and structured extraction.",
+    "models": "CAMeLBERT-MSA for classification, AraT5 for summarisation, and Gemini for 5W extraction.",
+    "results": "Achieved 98% classification accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "ood-scene",
+    "title": "Image Classification and OOD Scene Detection",
+    "subtitle": "Classification and Unseen-Scene Detection",
+    "year": "2024",
+    "focus": [
+      "Computer Vision",
+      "Image Classification",
+      "OOD Detection",
+      "Deep Learning"
+    ],
+    "short": "A CNN-based image classification and out-of-distribution detection system for unseen scenes.",
+    "problem": "Image classifiers may produce overconfident predictions when they encounter scenes outside their training distribution.",
+    "solution": "The project combines image classification with OOD detection to reduce confident errors on unseen images.",
+    "models": "CNN-based image classification with out-of-distribution detection.",
+    "results": "Achieved 87% classification accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "mersad",
+    "title": "Mersad",
+    "subtitle": "AI-Based Safety Equipment Monitoring",
+    "year": "2023",
+    "focus": [
+      "Computer Vision",
+      "Object Detection",
+      "PPE Detection",
+      "Real-Time Monitoring",
+      "Machine Learning"
+    ],
+    "short": "A real-time PPE monitoring system for workplace safety.",
+    "problem": "Manual PPE monitoring can be inconsistent and difficult to scale across active work environments.",
+    "solution": "Mersad detects personal protective equipment and supports automated safety monitoring in real time.",
+    "models": "YOLOv8 for object detection and K-means denoising for image enhancement.",
+    "results": "Achieved 84.1% detection accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "flight-delay",
+    "title": "Flight Delay Prediction",
+    "subtitle": "Predictive Analytics for Aviation",
+    "year": "2023",
+    "focus": [
+      "Predictive Analytics",
+      "Machine Learning",
+      "Data Analysis",
+      "Feature Engineering",
+      "Model Optimisation"
+    ],
+    "short": "An XGBoost model for predicting flight delays from operational, weather, schedule, and airport data.",
+    "problem": "Flight delays disrupt passenger experience, airline operations, and resource planning.",
+    "solution": "The model combines operational and environmental variables to estimate delay risk before departure.",
+    "models": "XGBoost with feature engineering, feature selection, and hyperparameter optimisation.",
+    "results": "Achieved 91% prediction accuracy.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "tunnel-robot",
+    "title": "Underground Tunnel Explorer Robot",
+    "subtitle": "Autonomous Robotics Exploration System",
+    "year": "2025",
+    "focus": [
+      "Robotics",
+      "Autonomous Navigation",
+      "Sensor Fusion",
+      "Embedded Systems",
+      "Computer Vision",
+      "IoT"
+    ],
+    "short": "An autonomous robot designed to explore narrow underground passages while avoiding obstacles, monitoring stability, and reporting outdoor location data.",
+    "problem": "Unknown underground passages can be narrow, unstable, and unsafe for direct human exploration.",
+    "solution": "The robot combines multi-directional ultrasonic scanning, IMU-based tilt protection, HuskyLens target detection, motor control, and ESP32-based GPS and Wi-Fi telemetry.",
+    "models": "Rule-based sensor fusion using Arduino, ESP32, HC-SR04 ultrasonic sensing, MPU6050 IMU, HuskyLens, GPS, and L298N motor control.",
+    "results": "Validated autonomous obstacle avoidance, safe-path selection, tilt protection, visual target following, and outdoor GPS telemetry.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "bilingual-ocr",
+    "title": "Arabic-English OCR Workflow",
+    "subtitle": "SDM Artificial Intelligence Training Project",
+    "year": "2025",
+    "focus": [
+      "OCR",
+      "Vision-Language Models",
+      "Prompt Engineering",
+      "Arabic AI",
+      "Document Intelligence",
+      "Python"
+    ],
+    "short": "A bilingual OCR workflow for extracting structured Arabic-English text from complex documents while preserving reading order and layout.",
+    "problem": "Traditional OCR systems often struggle with mixed Arabic-English documents, complex layouts, tables, and right-to-left reading order.",
+    "solution": "The project evaluated multiple OCR approaches, then used Gemma 3 12B with prompt engineering and Python automation to improve bilingual extraction and document structure preservation.",
+    "models": "Gemma 3 12B vision-language model, Surya OCR, and comparative evaluation of traditional OCR tools.",
+    "results": "Delivered a reusable OCR workflow supporting multiple document categories and structured bilingual extraction.",
+    "github": "#",
+    "drive": "#"
+  },
+  {
+    "id": "orbscope",
+    "title": "OrbScope",
+    "subtitle": "NASA Space Apps Hackathon Project",
+    "year": "2023",
+    "focus": [
+      "Space Technology",
+      "Earth Observation",
+      "Data Visualisation",
+      "UX Prototype",
+      "Innovation"
+    ],
+    "short": "A space-focused interactive prototype developed for the NASA Space Apps Hackathon.",
+    "problem": "Space and Earth-observation information can be difficult for general users to explore through complex technical interfaces.",
+    "solution": "OrbScope presents the concept through an interactive prototype designed to make information exploration clearer and more accessible.",
+    "models": "Interactive Figma prototype and user-centred interface design.",
+    "results": "Ranked among the Top 10 teams at the NASA Space Apps Hackathon.",
+    "github": "https://www.figma.com/proto/juLULsOEuhuDDFNojK2cbm/ORBSCOPE?node-id=3-18&starting-point-node-id=41%3A3&t=ZPjHsrlxmrQJVhWG-1",
+    "drive": "#"
+  }
 ]
