@@ -1,54 +1,45 @@
-const id = new URLSearchParams(location.search).get("id");
+const id = new URLSearchParams(window.location.search).get("id");
 
-function formatInline(text = "") {
+function inlineMarkdown(text = "") {
 return text.replace(/**(.*?)**/g, "<strong>$1</strong>");
 }
 
 function renderContent(text = "") {
 const lines = text.split("\n");
 let html = "";
-let listItems = [];
+let i = 0;
 
-function closeList() {
-if (listItems.length > 0) {
-html += `        <ul>
-          ${listItems
-            .map((item) =>`<li>${formatInline(item)}</li>`)
-            .join("")}         </ul>
-      `;
-
-```
-  listItems = [];
-}
-```
-
-}
-
-for (let i = 0; i < lines.length; i++) {
+while (i < lines.length) {
 const line = lines[i].trim();
 
 ```
 if (!line) {
-  closeList();
+  i++;
   continue;
 }
 
+// Bullet list
 if (line.startsWith("* ")) {
-  listItems.push(line.slice(2));
+  html += "<ul>";
+
+  while (i < lines.length && lines[i].trim().startsWith("* ")) {
+    const item = lines[i].trim().slice(2);
+    html += `<li>${inlineMarkdown(item)}</li>`;
+    i++;
+  }
+
+  html += "</ul>";
   continue;
 }
 
+// Markdown table
 if (line.startsWith("|")) {
-  closeList();
-
   const tableLines = [];
 
   while (i < lines.length && lines[i].trim().startsWith("|")) {
     tableLines.push(lines[i].trim());
     i++;
   }
-
-  i--;
 
   const rows = tableLines.map((row) =>
     row
@@ -66,7 +57,7 @@ if (line.startsWith("|")) {
         <thead>
           <tr>
             ${headers
-              .map((header) => `<th>${formatInline(header)}</th>`)
+              .map((header) => `<th>${inlineMarkdown(header)}</th>`)
               .join("")}
           </tr>
         </thead>
@@ -77,10 +68,7 @@ if (line.startsWith("|")) {
               (row) => `
                 <tr>
                   ${row
-                    .map(
-                      (cell) =>
-                        `<td>${formatInline(cell)}</td>`
-                    )
+                    .map((cell) => `<td>${inlineMarkdown(cell)}</td>`)
                     .join("")}
                 </tr>
               `
@@ -94,13 +82,12 @@ if (line.startsWith("|")) {
   continue;
 }
 
-closeList();
-html += `<p>${formatInline(line)}</p>`;
+// Normal paragraph
+html += `<p>${inlineMarkdown(line)}</p>`;
+i++;
 ```
 
 }
-
-closeList();
 
 return html;
 }
@@ -108,7 +95,7 @@ return html;
 fetch("projects.json")
 .then((response) => {
 if (!response.ok) {
-throw new Error("Unable to load projects.json");
+throw new Error("Could not load projects.json");
 }
 
 ```
@@ -122,7 +109,7 @@ const p = items.find((project) => project.id === id) || items[0];
 ```
 document.title = `${p.title} | Jori Fahad Baaljahr`;
 
-const sections = [
+const normalSections = [
   ["Short Description", p.short],
   ["Problem", p.problem],
   ["Solution", p.solution],
@@ -136,18 +123,18 @@ const demoSection =
       <section class="detail">
         <h3>Demo</h3>
 
-        <p>
-          Explore the interactive ${p.title} project demo.
-        </p>
+        <div class="detail-content">
+          <p>Explore the interactive ${p.title} demo.</p>
 
-        <a
-          class="button"
-          href="${p.demo}"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Open Live Demo
-        </a>
+          <a
+            class="button"
+            href="${p.demo}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Live Demo
+          </a>
+        </div>
       </section>
     `
     : "";
@@ -192,20 +179,21 @@ document.getElementById("project").innerHTML = `
     <h2>${p.subtitle}</h2>
 
     <div class="tags">
-      ${p.focus
-        .map((focusItem) => `<span>${focusItem}</span>`)
-        .join("")}
+      ${p.focus.map((item) => `<span>${item}</span>`).join("")}
     </div>
   </section>
 
   <div class="cover"></div>
 
-  ${sections
+  ${normalSections
     .map(
       ([title, content]) => `
         <section class="detail">
           <h3>${title}</h3>
-          ${renderContent(content)}
+
+          <div class="detail-content">
+            ${renderContent(content)}
+          </div>
         </section>
       `
     )
@@ -227,10 +215,11 @@ console.error(error);
 ```
 document.getElementById("project").innerHTML = `
   <section class="detail">
-    <h3>Unable to load project</h3>
-    <p>
-      Check that projects.json is valid and located in the correct folder.
-    </p>
+    <h3>Error</h3>
+
+    <div class="detail-content">
+      <p>Unable to load the project information.</p>
+    </div>
   </section>
 `;
 ```
