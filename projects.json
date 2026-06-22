@@ -25,25 +25,25 @@
   {
     "id": "logistics-rag",
     "title": "Logistics RAG Assistant",
-    "subtitle": "Grounded Supply-Chain Knowledge Assistant",
+    "subtitle": "Grounded Logistics and Supply-Chain Knowledge Assistant",
     "year": "2026",
     "focus": [
       "Generative AI",
-      "RAG",
-      "NLP",
+      "Retrieval-Augmented Generation",
+      "Natural Language Processing",
       "Semantic Search",
       "Vector Databases",
       "Prompt Engineering",
       "RAG Evaluation",
-      "LLM Applications",
-      "Recommendation Systems"
+      "LLM Applications"
     ],
-    "short": "A logistics RAG assistant that retrieves trusted supply-chain information, generates grounded answers, and recommends relevant solutions.",
-    "problem": "Supply-chain information is often scattered across different sources, making reliable retrieval and decision support difficult.",
-    "solution": "The assistant retrieves relevant knowledge through semantic search, generates grounded responses, and recommends solutions based on user needs.",
-    "models": "Semantic embeddings, vector retrieval, prompt engineering, LLM generation, and RAGAS evaluation.",
-    "results": "Achieved 1.00 faithfulness and 0.94 answer relevancy.",
-    "github": "#",
+    "short": "The Logistics RAG Assistant is a domain-specific question-answering system that helps users access trusted logistics and supply-chain knowledge through natural-language queries. It combines semantic document retrieval with a large language model to generate accurate and context-aware answers grounded in verified documents.",
+    "problem": "Logistics and supply-chain knowledge is often distributed across lengthy reports, transportation frameworks, warehousing manuals, regulations, and operational documents. Traditional keyword search may fail when a user's wording differs from the terminology used in the documents, while standalone large language models may generate unsupported or inaccurate answers.",
+    "solution": "The system processes logistics PDF documents and divides them into overlapping text chunks. Each chunk is converted into a semantic embedding and stored in a ChromaDB vector database.\n\nWhen a user submits a question, the system performs similarity search to retrieve the most relevant document chunks. These passages are inserted into a controlled prompt and sent to a large language model, which generates an answer using only the retrieved context. The Streamlit interface also displays the retrieved chunks and their source pages.",
+    "models": "* **Document Processing:** PDF documents are loaded and divided into overlapping chunks using LangChain and RecursiveCharacterTextSplitter.\n* **Embedding Model:** Sentence Transformer all-MiniLM-L6-v2 converts logistics text into semantic vector representations.\n* **Vector Database:** ChromaDB stores document embeddings and performs similarity-based retrieval.\n* **Language Model:** Groq Llama 3.1 8B Instant generates grounded answers from the retrieved context.\n* **RAG Pipeline:** Semantic retrieval, context construction, prompt engineering, and grounded response generation.\n* **Evaluation:** RAGAS measures Faithfulness, Answer Relevancy, Context Precision, and Context Recall.\n* **Application Development:** Python, LangChain, Streamlit, Hugging Face, ChromaDB, and Groq API.",
+    "results": "Four prompt configurations were evaluated using the RAGAS framework.\n\n| Prompt Configuration | Faithfulness | Answer Relevancy | Context Precision | Context Recall |\n|---|---:|---:|---:|---:|\n| Prompt 1 | 0.7500 | **0.9445** | 0.7500 | **0.7667** |\n| Prompt 2 | **1.0000** | 0.8632 | 0.6250 | 0.6667 |\n| Prompt 3 | 0.9643 | 0.8322 | **0.8125** | 0.6667 |\n| Prompt 4 | 0.5000 | 0.8973 | 0.6429 | 0.7083 |\n\nPrompt 3 achieved the most balanced overall performance, while Prompt 2 achieved perfect Faithfulness and Prompt 1 achieved the highest Answer Relevancy and Context Recall.",
+    "image": "RAG.png",
+    "github": "https://github.com/jorifahad/Logistics-RAG-Assistant",
     "drive": "#"
   },
   {
