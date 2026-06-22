@@ -1,22 +1,23 @@
-const projectContainer = document.getElementById("project");
-const projectId = new URLSearchParams(window.location.search).get("id");
+const id = new URLSearchParams(location.search).get("id");
 
 function formatBold(text = "") {
-const boldPattern = new RegExp("\*\*(.*?)\*\*", "g");
-return String(text).replace(boldPattern, "<strong>$1</strong>");
+return String(text).replace(
+new RegExp("\*\*(.*?)\*\*", "g"),
+"<strong>$1</strong>"
+);
 }
 
-function renderText(content = "") {
-const lines = String(content).split("\n");
+function renderContent(text = "") {
+const lines = String(text).split("\n");
 let html = "";
-let index = 0;
+let i = 0;
 
-while (index < lines.length) {
-const line = lines[index].trim();
+while (i < lines.length) {
+const line = lines[i].trim();
 
 ```
-if (line === "") {
-  index++;
+if (!line) {
+  i++;
   continue;
 }
 
@@ -24,15 +25,16 @@ if (line.startsWith("* ") || line.startsWith("- ")) {
   html += "<ul>";
 
   while (
-    index < lines.length &&
+    i < lines.length &&
     (
-      lines[index].trim().startsWith("* ") ||
-      lines[index].trim().startsWith("- ")
+      lines[i].trim().startsWith("* ") ||
+      lines[i].trim().startsWith("- ")
     )
   ) {
-    const item = lines[index].trim().substring(2);
+    const item = lines[i].trim().slice(2);
+
     html += `<li>${formatBold(item)}</li>`;
-    index++;
+    i++;
   }
 
   html += "</ul>";
@@ -43,50 +45,56 @@ if (line.startsWith("|")) {
   const tableLines = [];
 
   while (
-    index < lines.length &&
-    lines[index].trim().startsWith("|")
+    i < lines.length &&
+    lines[i].trim().startsWith("|")
   ) {
-    tableLines.push(lines[index].trim());
-    index++;
+    tableLines.push(lines[i].trim());
+    i++;
   }
 
-  const rows = tableLines.map((row) => {
-    return row
-      .substring(1, row.length - 1)
+  const rows = tableLines.map((row) =>
+    row
+      .slice(1, -1)
       .split("|")
-      .map((cell) => cell.trim());
-  });
+      .map((cell) => cell.trim())
+  );
 
   const headers = rows[0] || [];
   const bodyRows = rows.slice(2);
 
-  html += '<div class="table-wrapper">';
-  html += '<table class="results-table">';
-  html += "<thead><tr>";
+  html += `
+    <div class="table-wrapper">
+      <table class="results-table">
+        <thead>
+          <tr>
+            ${headers
+              .map((header) => `<th>${formatBold(header)}</th>`)
+              .join("")}
+          </tr>
+        </thead>
 
-  headers.forEach((header) => {
-    html += `<th>${formatBold(header)}</th>`;
-  });
+        <tbody>
+          ${bodyRows
+            .map(
+              (row) => `
+                <tr>
+                  ${row
+                    .map((cell) => `<td>${formatBold(cell)}</td>`)
+                    .join("")}
+                </tr>
+              `
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
 
-  html += "</tr></thead>";
-  html += "<tbody>";
-
-  bodyRows.forEach((row) => {
-    html += "<tr>";
-
-    row.forEach((cell) => {
-      html += `<td>${formatBold(cell)}</td>`;
-    });
-
-    html += "</tr>";
-  });
-
-  html += "</tbody></table></div>";
   continue;
 }
 
 html += `<p>${formatBold(line)}</p>`;
-index++;
+i++;
 ```
 
 }
@@ -94,148 +102,138 @@ index++;
 return html;
 }
 
-function createSection(title, content) {
-if (!content) {
-return "";
+fetch("projects.json")
+.then((response) => {
+if (!response.ok) {
+throw new Error("Could not load projects.json");
 }
-
-return `     <section class="detail">       <h3>${title}</h3>       <div class="detail-content">
-        ${renderText(content)}       </div>     </section>
-  `;
-}
-
-function createDemo(project) {
-if (!project.demo || project.demo === "#") {
-return "";
-}
-
-return `     <section class="detail">       <h3>Demo</h3>       <div class="detail-content">         <p>Explore the interactive ${project.title} demo.</p>         <a
-          class="button"
-          href="${project.demo}"
-          target="_blank"
-          rel="noopener noreferrer"         >
-          Open Live Demo         </a>       </div>     </section>
-  `;
-}
-
-function createActions(project) {
-let actions = "";
-
-if (project.github && project.github !== "#") {
-const label =
-project.id === "orbscope"
-? "View Interactive Prototype"
-: "View Full Code";
 
 ```
-actions += `
-  <a
-    class="button"
-    href="${project.github}"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    ${label}
-  </a>
+return response.json();
+```
+
+})
+.then((items) => {
+const p = items.find((item) => item.id === id) || items[0];
+
+```
+document.title = p.title + " | Jori Fahad Baaljahr";
+
+const sections = [
+  ["Short Description", p.short],
+  ["Problem", p.problem],
+  ["Solution", p.solution],
+  ["Models & Technologies", p.models],
+  ["Results", p.results]
+];
+
+const demoSection =
+  p.demo && p.demo !== "#"
+    ? `
+      <section class="detail">
+        <h3>Demo</h3>
+
+        <div class="detail-content">
+          <p>Explore the interactive ${p.title} demo.</p>
+
+          <a
+            class="button"
+            href="${p.demo}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Open Live Demo
+          </a>
+        </div>
+      </section>
+    `
+    : "";
+
+const githubButton =
+  p.github && p.github !== "#"
+    ? `
+      <a
+        class="button"
+        href="${p.github}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ${
+          p.id === "orbscope"
+            ? "View Interactive Prototype"
+            : "View Full Code"
+        }
+      </a>
+    `
+    : "";
+
+const driveButton =
+  p.drive && p.drive !== "#"
+    ? `
+      <a
+        class="ghost"
+        href="${p.drive}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View Project Files
+      </a>
+    `
+    : "";
+
+document.getElementById("project").innerHTML = `
+  <section class="projectHero">
+    <p class="kicker">${p.year} · AI Project</p>
+
+    <h1>${p.title}</h1>
+    <h2>${p.subtitle}</h2>
+
+    <div class="tags">
+      ${(p.focus || [])
+        .map((item) => `<span>${item}</span>`)
+        .join("")}
+    </div>
+  </section>
+
+  <div class="cover"></div>
+
+  ${sections
+    .map(
+      ([title, content]) => `
+        <section class="detail">
+          <h3>${title}</h3>
+
+          <div class="detail-content">
+            ${renderContent(content)}
+          </div>
+        </section>
+      `
+    )
+    .join("")}
+
+  ${demoSection}
+
+  <div class="actions">
+    ${githubButton}
+    ${driveButton}
+  </div>
 `;
 ```
 
-}
-
-if (project.paper && project.paper !== "#") {
-actions += `       <a
-        class="ghost"
-        href="${project.paper}"
-        target="_blank"
-        rel="noopener noreferrer"       >
-        View Research Paper       </a>
-    `;
-}
-
-if (project.drive && project.drive !== "#") {
-actions += `       <a
-        class="ghost"
-        href="${project.drive}"
-        target="_blank"
-        rel="noopener noreferrer"       >
-        View Project Files       </a>
-    `;
-}
-
-return actions;
-}
-
-if (!projectContainer) {
-console.error('Element with id="project" was not found.');
-} else {
-projectContainer.innerHTML = "<p>Loading project...</p>";
-
-fetch("./projects.json")
-.then((response) => {
-if (!response.ok) {
-throw new Error(
-`projects.json could not be loaded: ${response.status}`
-);
-}
-
-```
-  return response.json();
-})
-.then((projects) => {
-  if (!Array.isArray(projects) || projects.length === 0) {
-    throw new Error("projects.json does not contain projects.");
-  }
-
-  const project =
-    projects.find((item) => item.id === projectId) ||
-    projects[0];
-
-  document.title =
-    `${project.title} | Jori Fahad Baaljahr`;
-
-  const tags = Array.isArray(project.focus)
-    ? project.focus
-        .map((item) => `<span>${item}</span>`)
-        .join("")
-    : "";
-
-  projectContainer.innerHTML = `
-    <section class="projectHero">
-      <p class="kicker">${project.year} · AI Project</p>
-      <h1>${project.title}</h1>
-      <h2>${project.subtitle}</h2>
-
-      <div class="tags">
-        ${tags}
-      </div>
-    </section>
-
-    <div class="cover"></div>
-
-    ${createSection("Short Description", project.short)}
-    ${createSection("Problem", project.problem)}
-    ${createSection("Solution", project.solution)}
-    ${createSection("Models & Technologies", project.models)}
-    ${createDemo(project)}
-    ${createSection("Results", project.results)}
-
-    <div class="actions">
-      ${createActions(project)}
-    </div>
-  `;
 })
 .catch((error) => {
-  console.error(error);
+console.error(error);
 
-  projectContainer.innerHTML = `
-    <section class="detail">
-      <h3>Error</h3>
-      <div class="detail-content">
-        <p>${error.message}</p>
-      </div>
-    </section>
-  `;
-});
+```
+document.getElementById("project").innerHTML = `
+  <section class="detail">
+    <h3>Error</h3>
+
+    <div class="detail-content">
+      <p>Unable to load the project information.</p>
+    </div>
+  </section>
+`;
 ```
 
-}
+});
