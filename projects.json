@@ -115,22 +115,26 @@
   },
   {
     "id": "mersad",
-    "title": "Mersad",
-    "subtitle": "AI-Based Safety Equipment Monitoring",
+    "title": "MERSAD",
+    "subtitle": "PPE Detection and Automatic Image Denoising System",
     "year": "2023",
     "focus": [
       "Computer Vision",
       "Object Detection",
       "PPE Detection",
-      "Real-Time Monitoring",
-      "Machine Learning"
+      "YOLOv8",
+      "Image Denoising",
+      "K-Means Clustering",
+      "Flask",
+      "Real-Time Monitoring"
     ],
-    "short": "A real-time PPE monitoring system for workplace safety.",
-    "problem": "Manual PPE monitoring can be inconsistent and difficult to scale across active work environments.",
-    "solution": "Mersad detects personal protective equipment and supports automated safety monitoring in real time.",
-    "models": "YOLOv8 for object detection and K-means denoising for image enhancement.",
-    "results": "Achieved 84.1% detection accuracy.",
-    "github": "#",
+    "short": "MERSAD is an industrial safety monitoring system that combines automatic image denoising with YOLOv8-based personal protective equipment detection. It supports real-time webcam monitoring and uploaded-image analysis through a Flask web application.",
+    "problem": "Industrial sites require continuous monitoring to ensure that workers wear the required personal protective equipment. Manual inspection can be inconsistent, difficult to scale, and affected by poor image quality. Noise such as Gaussian, salt-and-pepper, or mixed noise can also reduce the reliability of object detection and lead to missed safety violations.",
+    "solution": "MERSAD integrates image-quality enhancement and PPE detection within one automated workflow. For uploaded images, the system first estimates whether the image contains Gaussian noise, salt-and-pepper noise, mixed noise, or no significant noise. A K-Means-based denoising pipeline then cleans the image before sending it to YOLOv8 for PPE detection.\n\nThe system also supports live webcam detection, compliance summaries, detection confidence scores, recent alerts, saved snapshots, and SQLite-based detection records. Compliant classes are displayed with green bounding boxes, while missing protective equipment is highlighted in red.",
+    "models": "* **Object Detection:** YOLOv8 detects workers, protective equipment, safety violations, machinery, vehicles, and safety cones.\n* **Supported PPE Classes:** Hardhat, Mask, Safety Vest, NO-Hardhat, NO-Mask, and NO-Safety Vest.\n* **Noise Classification:** Automatically identifies Gaussian, salt-and-pepper, mixed, and clean images.\n* **Salt-and-Pepper Denoising:** K-Means clusters local pixel-outlier features, followed by selective median replacement for probable impulse-noise pixels.\n* **Gaussian Denoising:** Overlapping image patches are grouped using K-Means, then PCA-Wiener shrinkage suppresses noise while preserving structure.\n* **Mixed-Noise Processing:** Removes impulse noise first, then applies the Gaussian denoising stage.\n* **Application Stack:** Python, YOLOv8, OpenCV, Flask, SQLite, NumPy, Scikit-learn, and web-based monitoring.",
+    "results": "MERSAD produced an end-to-end safety-monitoring workflow for both live and uploaded industrial images.\n\n| Capability | Result |\n|---|---|\n| Live PPE monitoring | Real-time webcam detection and compliance status |\n| Uploaded-image analysis | Automatic noise estimation, denoising, and PPE detection |\n| Compliance visualization | Green boxes for compliant PPE and red boxes for violations |\n| Detection reporting | Confidence scores, class counts, alerts, and saved snapshots |\n| Data management | SQLite records for reviewing detection instances |\n\nThe trained YOLOv8 model achieved **84.1% mAP@50** for PPE detection. The final pipeline was able to detect compliant equipment and identify violations such as missing hardhats, masks, and safety vests after image preprocessing.\n\nThe non-compliant count represents detected violation boxes rather than the number of unique workers, because one worker may have multiple PPE violations.",
+    "video": "Mersad.mp4",
+    "github": "https://github.com/jorifahad/AI-Based-Safety-Equipment-Monitoring",
     "drive": "#"
   },
   {
