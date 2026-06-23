@@ -127,7 +127,7 @@
       "Image Denoising",
       "K-Means Clustering",
       "Flask",
-      "Machine Learnin",
+      "Machine Learning",
       "Real-Time Monitoring"
     ],
     "short": "MERSAD is an industrial safety monitoring system that combines automatic image denoising with YOLOv8-based personal protective equipment detection. It supports real-time webcam monitoring and uploaded-image analysis through a Flask web application.",
