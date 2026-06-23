@@ -216,7 +216,6 @@
 .body {width:76px;height:65px;border-radius:18px 18px 8px 8px;background:#ff8f39;margin:4px auto}
 .detect-box {position:absolute;inset:14% 27%;border:2px solid #7dff9d;border-radius:12px;color:#b5ffc8;font-size:.5rem;padding:5px}
 .safety-status {position:absolute;right:0;bottom:8px;font-size:.55rem;font-weight:900;color:#7dff9d}
-
 /* Flight */
 .visual-flight-delay {
   background: linear-gradient(135deg,#061426,#102d4a);
