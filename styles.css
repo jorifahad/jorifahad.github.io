@@ -584,3 +584,21 @@
   font-weight: 900;
   line-height: 1.4;
 }
+
+
+/* About section — single-column layout */
+.about-section {
+  display: block;
+}
+
+.about-section > h2 {
+  margin-bottom: 28px;
+}
+
+.about-section .copy {
+  max-width: 980px;
+  margin: 0;
+  padding-top: 0;
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
