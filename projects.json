@@ -159,22 +159,24 @@
   {
     "id": "tunnel-robot",
     "title": "Underground Tunnel Explorer Robot",
-    "subtitle": "Autonomous Robotics Exploration System",
+    "subtitle": "Autonomous Exploration and Sensor-Fusion System",
     "year": "2025",
     "focus": [
       "Robotics",
       "Autonomous Navigation",
       "Sensor Fusion",
       "Embedded Systems",
+      "Obstacle Avoidance",
       "Computer Vision",
-      "IoT"
+      "IoT and Telemetry"
     ],
-    "short": "An autonomous robot designed to explore narrow underground passages while avoiding obstacles, monitoring stability, and reporting outdoor location data.",
-    "problem": "Unknown underground passages can be narrow, unstable, and unsafe for direct human exploration.",
-    "solution": "The robot combines multi-directional ultrasonic scanning, IMU-based tilt protection, HuskyLens target detection, motor control, and ESP32-based GPS and Wi-Fi telemetry.",
-    "models": "Rule-based sensor fusion using Arduino, ESP32, HC-SR04 ultrasonic sensing, MPU6050 IMU, HuskyLens, GPS, and L298N motor control.",
-    "results": "Validated autonomous obstacle avoidance, safe-path selection, tilt protection, visual target following, and outdoor GPS telemetry.",
-    "github": "#",
+    "short": "The Underground Tunnel Explorer Robot is a compact autonomous robotic vehicle designed to explore narrow, unknown, and potentially hazardous underground passages. The system combines real-time obstacle detection, reactive path selection, tilt protection, visual target following, and outdoor GPS telemetry to support safer inspection of confined environments.",
+    "problem": "Historic underground passages, such as those discovered in Jeddah Al-Balad, may be narrow, structurally unknown, and unsafe for direct human entry. Manual inspection and fixed sensing systems are limited by difficult access, uncertain tunnel layouts, obstacles, and uneven terrain. The project therefore addresses the need for a compact robotic platform that can move through confined passages, avoid collisions, maintain a safe orientation, and report useful environmental and location information.",
+    "solution": "The robot uses a dual-controller architecture. An Arduino manages movement, distance sensing, sensor fusion, obstacle avoidance, tilt safety, and target-following behavior, while an ESP32 handles outdoor GPS tracking, Wi-Fi communication, and a local web interface.\n\nA servo-mounted ultrasonic sensor scans the front, right, and left directions. When an obstacle is detected within the safety threshold, the robot stops, compares the available space on both sides, and turns toward the more open path. The MPU6050 IMU monitors the accelerometer Z-axis and immediately stops the motors if unsafe tilt is detected. A HuskyLens camera supports trained-target detection and left/right tracking, while GPS coordinates can be viewed through a nearby mobile device when the robot operates outdoors.",
+    "models": "* **Reactive Navigation:** The robot continuously evaluates local sensor readings and chooses the direction with the most available free space without requiring a predefined map or SLAM.\n* **Distance Perception:** A servo-mounted HC-SR04 ultrasonic sensor scans right, forward, and left to detect walls and obstacles.\n* **Safety Monitoring:** The MPU6050 IMU uses the accelerometer Z-axis as a tilt-safety trigger and stops the robot during unstable orientation.\n* **Visual Target Following:** HuskyLens detects a trained target and uses its X-center position to guide left, right, or forward movement.\n* **Motor Control:** Four DC geared motors and a motor driver provide forward movement, stopping, and differential left/right turning.\n* **Outdoor Tracking:** ESP32, GPS, TinyGPS++, and a local Wi-Fi web server provide real-time coordinates and Google Maps access outside the tunnel.\n* **Development and Validation:** Arduino, ESP32, embedded C/C++, TinkerCAD simulation, rule-based sensor fusion, and physical prototype testing.",
+    "results": "The project validated the complete autonomous exploration workflow through simulation and physical hardware testing.\n\n| System Capability | Validation Result |\n|---|---|\n| Forward navigation | Robot moves while the path ahead is clear |\n| Obstacle avoidance | Stops within the safety threshold and scans both sides |\n| Path selection | Turns toward the direction with greater free space |\n| Tilt protection | Immediately stops when the IMU detects unsafe orientation |\n| Visual target following | Adjusts left, right, or forward using the HuskyLens target position |\n| Outdoor GPS telemetry | Displays updated coordinates through an ESP32-hosted web interface |\n\nThe TinkerCAD simulation confirmed the core movement, obstacle-detection, scanning, and decision logic before physical deployment. The final prototype demonstrated stable rule-based navigation in maze-like environments, sensor-driven safety behavior, target-following capability, and outdoor location reporting without relying on mapping, SLAM, or machine-learning-based decision making.",
+    "video": "Robotics.mp4",
+    "github": "https://github.com/jorifahad/Underground-Tunnel-Explorer-Robot",
     "drive": "#"
   },
   {
