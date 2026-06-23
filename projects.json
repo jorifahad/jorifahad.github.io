@@ -136,21 +136,24 @@
   {
     "id": "flight-delay",
     "title": "Flight Delay Prediction",
-    "subtitle": "Predictive Analytics for Aviation",
+    "subtitle": "Predictive Analytics for Aviation Operations",
     "year": "2023",
     "focus": [
       "Predictive Analytics",
       "Machine Learning",
-      "Data Analysis",
+      "Aviation AI",
+      "Data Preprocessing",
       "Feature Engineering",
-      "Model Optimisation"
+      "Model Comparison",
+      "Hyperparameter Tuning"
     ],
-    "short": "An XGBoost model for predicting flight delays from operational, weather, schedule, and airport data.",
-    "problem": "Flight delays disrupt passenger experience, airline operations, and resource planning.",
-    "solution": "The model combines operational and environmental variables to estimate delay risk before departure.",
-    "models": "XGBoost with feature engineering, feature selection, and hyperparameter optimisation.",
-    "results": "Achieved 91% prediction accuracy.",
-    "github": "#",
+    "short": "The Flight Delay Prediction project is a machine learning system designed to predict whether a flight will arrive at least 15 minutes late. It analyzes operational flight information and compares multiple classification models to identify the most reliable approach for supporting airline scheduling, airport resource planning, and proactive passenger communication.",
+    "problem": "Flight delays create operational disruption, increase airline costs, reduce airport efficiency, and negatively affect passenger experience. Airlines and airports need an early and reliable way to identify flights at risk of arriving late. The prediction task is formulated as binary classification using ARR_DEL15, where 1 represents an arrival delay of at least 15 minutes and 0 represents an on-time flight.",
+    "solution": "The project processes January 2019 flight records by handling missing values, encoding categorical variables, combining origin and destination airports, and grouping flight distance into Short, Medium, and Long categories.\n\nThree machine learning classifiers were evaluated: XGBoost, K-Nearest Neighbors, and Naive Bayes. XGBoost was selected as the primary model because of its strong performance on structured data. GridSearchCV was used to tune the model and improve its generalization before evaluation on the test set.",
+    "models": "* **Target Variable:** ARR_DEL15 identifies whether a flight arrived at least 15 minutes later than scheduled.\n* **Input Features:** Day of month, day of week, operating carrier, origin–destination route, departure delay, cancellation status, diversion status, and distance group.\n* **Data Preparation:** Missing-value handling, categorical encoding, route feature construction, and distance grouping.\n* **Primary Model:** XGBoost classifier for structured flight data and nonlinear feature relationships.\n* **Comparison Models:** K-Nearest Neighbors and Naive Bayes were evaluated using the same dataset.\n* **Model Selection:** GridSearchCV was used to identify the strongest XGBoost configuration.\n* **Evaluation:** Accuracy, precision, recall, F1-score, confusion matrix, and ROC analysis.",
+    "results": "The tuned XGBoost model achieved the strongest overall performance among the evaluated classifiers.\n\n| Model | Accuracy | Precision | Recall | F1-score |\n|---|---:|---:|---:|---:|\n| XGBoost | **91.37%** | 86.53% | **77.84%** | **81.95%** |\n| K-Nearest Neighbors | 88.99% | **87.61%** | 65.50% | 74.96% |\n| Naive Bayes | 83.38% | 69.40% | 60.75% | 64.79% |\n\nXGBoost delivered the highest accuracy, recall, and F1-score, providing the most balanced delay-prediction performance. KNN achieved slightly higher precision but missed more delayed flights because of its lower recall, while Naive Bayes produced the weakest overall results.",
+    "hideMedia": true,
+    "github": "https://github.com/jorifahad/Flight-Delay-Prediction",
     "drive": "#"
   },
   {
