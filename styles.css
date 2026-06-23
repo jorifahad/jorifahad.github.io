@@ -216,6 +216,7 @@
 .body {width:76px;height:65px;border-radius:18px 18px 8px 8px;background:#ff8f39;margin:4px auto}
 .detect-box {position:absolute;inset:14% 27%;border:2px solid #7dff9d;border-radius:12px;color:#b5ffc8;font-size:.5rem;padding:5px}
 .safety-status {position:absolute;right:0;bottom:8px;font-size:.55rem;font-weight:900;color:#7dff9d}
+
 /* Flight */
 .visual-flight-delay {
   background: linear-gradient(135deg,#061426,#102d4a);
@@ -675,30 +676,13 @@
   padding: 14px 42px 14px 16px;
   border: 1px solid #2d3856;
   border-radius: 16px;
-  background:
-    linear-gradient(45deg, transparent 50%, #aeb8d4 50%) calc(100% - 20px) 52% / 6px 6px no-repeat,
-    linear-gradient(135deg, #aeb8d4 50%, transparent 50%) calc(100% - 14px) 52% / 6px 6px no-repeat,
-    #11182b;
+  background: #11182b;
   color: #f7f8fc;
   font: inherit;
   font-size: .9rem;
   letter-spacing: 0;
   text-transform: none;
-  appearance: none;
   cursor: pointer;
-  outline: none;
-  transition: border-color .25s, box-shadow .25s, background-color .25s;
-}
-
-.project-sort select:hover,
-.project-sort select:focus {
-  border-color: #7384ff;
-  box-shadow: 0 0 0 4px rgba(115, 132, 255, .12);
-}
-
-.project-sort option {
-  color: #f7f8fc;
-  background: #11182b;
 }
 
 @media (max-width: 700px) {
@@ -708,7 +692,54 @@
   }
 
   .project-sort {
-    min-width: 0;
     width: 100%;
   }
+}
+
+
+/* MERSAD homepage card — use the uploaded project logo */
+.visual-mersad {
+  background: #07101f;
+}
+
+.mersad-logo-scene {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.mersad-logo-scene img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+
+/* FIX: Show the complete MERSAD logo inside the homepage project card */
+.visual-mersad .visual-art {
+  width: 100%;
+  height: 100%;
+}
+
+.mersad-logo-scene {
+  width: 100%;
+  height: 100%;
+  padding: 22px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.mersad-logo-scene img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 0;
 }
