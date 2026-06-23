@@ -602,3 +602,43 @@
   font-size: 1.25rem;
   line-height: 1.8;
 }
+
+
+/* Resource cards with visible platform logos */
+.resources .resource-card {
+  min-height: 180px;
+  padding: 28px;
+  border: 1px solid #26314c;
+  border-radius: 26px;
+  background: #11182b;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+
+.resources .resource-card:hover {
+  transform: translateY(-6px);
+  border-color: #7384ff;
+  background: #151d33;
+}
+
+.resource-icon {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(115,132,255,.22), rgba(154,137,255,.18));
+  border: 1px solid rgba(130,143,255,.30);
+}
+
+.resource-icon svg {
+  width: 29px;
+  height: 29px;
+  fill: #f7f8fc;
+}
