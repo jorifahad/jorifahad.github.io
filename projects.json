@@ -35,6 +35,7 @@
       "Vector Databases",
       "Prompt Engineering",
       "RAG Evaluation",
+      "Recommendation Systems",
       "LLM Applications"
     ],
     "short": "The Logistics RAG Assistant is a domain-specific question-answering system that helps users access trusted logistics and supply-chain knowledge through natural-language queries. It combines semantic document retrieval with a large language model to generate accurate and context-aware answers grounded in verified documents.",
@@ -126,6 +127,7 @@
       "Image Denoising",
       "K-Means Clustering",
       "Flask",
+      "Machine Learnin",
       "Real-Time Monitoring"
     ],
     "short": "MERSAD is an industrial safety monitoring system that combines automatic image denoising with YOLOv8-based personal protective equipment detection. It supports real-time webcam monitoring and uploaded-image analysis through a Flask web application.",
