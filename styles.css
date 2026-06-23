@@ -642,3 +642,74 @@
   height: 29px;
   fill: #f7f8fc;
 }
+
+
+/* Projects heading and year sorting dropdown */
+.projects-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin: .15em 0 .75em;
+}
+
+.projects-heading-row h2 {
+  margin: 0;
+  font-size: clamp(3rem, 6vw, 6rem);
+  letter-spacing: -.06em;
+}
+
+.project-sort {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 210px;
+  color: #aab3c6;
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.project-sort select {
+  width: 100%;
+  padding: 14px 42px 14px 16px;
+  border: 1px solid #2d3856;
+  border-radius: 16px;
+  background:
+    linear-gradient(45deg, transparent 50%, #aeb8d4 50%) calc(100% - 20px) 52% / 6px 6px no-repeat,
+    linear-gradient(135deg, #aeb8d4 50%, transparent 50%) calc(100% - 14px) 52% / 6px 6px no-repeat,
+    #11182b;
+  color: #f7f8fc;
+  font: inherit;
+  font-size: .9rem;
+  letter-spacing: 0;
+  text-transform: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: border-color .25s, box-shadow .25s, background-color .25s;
+}
+
+.project-sort select:hover,
+.project-sort select:focus {
+  border-color: #7384ff;
+  box-shadow: 0 0 0 4px rgba(115, 132, 255, .12);
+}
+
+.project-sort option {
+  color: #f7f8fc;
+  background: #11182b;
+}
+
+@media (max-width: 700px) {
+  .projects-heading-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .project-sort {
+    min-width: 0;
+    width: 100%;
+  }
+}
