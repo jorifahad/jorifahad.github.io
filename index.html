@@ -8,7 +8,7 @@
     name="description"
     content="Artificial Intelligence portfolio of Jori Fahad Baaljahr."
   >
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=21">
 </head>
 
 <body>
@@ -54,50 +54,11 @@
     </div>
 
     <div class="hero-tech" aria-hidden="true">
-      <div class="screen main-screen">
-        <div class="screen-dots">
-          <span></span><span></span><span></span>
-        </div>
-
-        <pre><code><span class="code-purple">class</span> NeuralNetwork(nn.Module):
-    <span class="code-purple">def</span> __init__(self):
-        super().__init__()
-        self.fc1 = nn.Linear(128, 64)
-        self.fc2 = nn.Linear(64, 32)
-
-    <span class="code-purple">def</span> forward(self, x):
-        x = torch.relu(self.fc1(x))
-        return self.fc2(x)</code></pre>
-      </div>
-
-      <div class="floating-card neural-card">
-        <div class="mini-network">
-          <i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-      </div>
-
-      <div class="floating-card chart-card">
-        <span></span><span></span><span></span><span></span>
-      </div>
-
-      <div class="floating-card code-card">&lt;/&gt;</div>
-
-      <div class="floating-card wave-card">
-        <svg viewBox="0 0 240 80" role="img" aria-label="Animated data wave">
-          <path
-            d="M0,44 C25,5 45,75 75,40 C100,5 125,75 155,42 C180,8 205,70 240,35"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="4"
-            stroke-linecap="round"
-          />
-        </svg>
-      </div>
-
-      <div class="laptop-base">
-        <div class="keyboard-grid"></div>
-        <div class="trackpad"></div>
-      </div>
+      <img
+        src="hero-tech.png"
+        alt=""
+        class="hero-tech-image"
+      >
     </div>
   </section>
 
@@ -182,6 +143,6 @@
   <span>Artificial Intelligence Portfolio</span>
 </footer>
 
-<script src="script.js?v=20"></script>
+<script src="script.js?v=21"></script>
 </body>
 </html>
