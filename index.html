@@ -4,108 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Jori Fahad Baaljahr | AI Portfolio</title>
-  <meta
-    name="description"
-    content="Artificial Intelligence portfolio of Jori Fahad Baaljahr."
-  >
-  <link rel="stylesheet" href="styles.css?v=22">
+  <link rel="stylesheet" href="styles.css?v=17">
 </head>
-
 <body>
-<header class="site-header">
-  <nav class="navbar" aria-label="Primary navigation">
-    <a class="brand" href="index.html" aria-label="Home">JB</a>
-
-    <div class="nav-links">
+<header>
+  <nav>
+    <a class="brand" href="index.html">JB</a>
+    <div class="links">
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#resources">Resources</a>
     </div>
-
-    <a
-      class="contact-button"
-      href="https://wa.me/966540734842"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Contact Me
-    </a>
+    <a class="button" href="https://wa.me/966540734842" target="_blank" rel="noopener noreferrer">Contact Me</a>
   </nav>
 </header>
 
 <main>
-  <section class="hero" id="home">
-    <div class="hero-network" aria-hidden="true">
-      <canvas id="ai-network"></canvas>
-    </div>
-
+  <section class="hero">
+    <canvas id="ai-network"></canvas>
     <div class="hero-content">
-      <p class="hero-kicker">Artificial Intelligence</p>
-
-      <h1>
-        <span>Jori Fahad</span>
-        <strong>Baaljahr</strong>
-      </h1>
-
-      <h2>
-        Building practical
-        <span>AI solutions</span>
-      </h2>
-    </div>
-
-    <div class="hero-tech" aria-hidden="true">
-      <div class="tech-scene">
-        <div class="laptop">
-          <div class="laptop-screen">
-            <div class="screen-topbar">
-              <span></span><span></span><span></span>
-            </div>
-            <pre><code><span>class</span> NeuralNetwork(nn.Module):
-    <span>def</span> __init__(self):
-        super().__init__()
-        self.fc1 = nn.Linear(128, 64)
-        self.fc2 = nn.Linear(64, 32)
-
-    <span>def</span> forward(self, x):
-        x = torch.relu(self.fc1(x))
-        return self.fc2(x)</code></pre>
-          </div>
-
-          <div class="laptop-base">
-            <div class="keyboard">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </div>
-            <div class="trackpad"></div>
-          </div>
-        </div>
-
-        <div class="tech-card neural-card">
-          <div class="mini-nn">
-            <b></b><b></b><b></b><b></b><b></b><b></b>
-          </div>
-        </div>
-
-        <div class="tech-card bars-card">
-          <i></i><i></i><i></i><i></i>
-        </div>
-
-        <div class="tech-card code-icon-card">&lt;/&gt;</div>
-
-        <div class="tech-card wave-card">
-          <svg viewBox="0 0 220 90" aria-hidden="true">
-            <path d="M0 50 C25 5, 45 85, 75 45 S125 5, 150 50 S195 85, 220 35" />
-          </svg>
-        </div>
+      <p class="kicker">Artificial Intelligence</p>
+      <h1>Jori Fahad Baaljahr</h1>
+      <h2>Building practical <span>AI solutions</span></h2>
+      <div class="count">
+        <b id="project-count">11</b>
+        <small>Selected Projects</small>
       </div>
     </div>
   </section>
 
   <section class="section" id="projects">
-    <p class="section-kicker">Selected Work</p>
-
+    <p class="kicker">Selected Work</p>
     <div class="projects-heading-row">
       <h2>Projects</h2>
 
@@ -122,57 +51,40 @@
   </section>
 
   <section class="section about-section" id="about">
-    <p class="section-kicker">About</p>
+    <p class="kicker">About</p>
     <h2>AI Engineer</h2>
-
-    <p class="about-copy">
-      Artificial Intelligence graduate with hands-on experience developing
-      end-to-end AI systems across deep learning, computer vision, natural
-      language processing, multimodal learning, and retrieval-augmented
-      generation. I transform complex requirements into reliable, measurable,
-      and deployment-ready solutions—from model development and evaluation to
-      practical applications that improve efficiency, support decision-making,
-      and deliver real-world impact.
-    </p>
+    <p class="copy">Artificial Intelligence graduate with hands-on experience developing end-to-end AI systems across deep learning, computer vision, natural language processing, multimodal learning, and retrieval-augmented generation. I transform complex requirements into reliable, measurable, and deployment-ready solutions—from model development and evaluation to practical applications that improve efficiency, support decision-making, and deliver real-world impact.</p>
   </section>
 
   <section class="section" id="resources">
-    <p class="section-kicker">Resources</p>
+    <p class="kicker">Resources</p>
     <h2>Explore More</h2>
-
     <div class="resources">
-      <a
-        class="resource-card"
-        href="https://github.com/jorifahad"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="resource-icon" aria-hidden="true">GH</span>
+      <a class="resource-card" href="https://github.com/jorifahad" target="_blank" rel="noopener noreferrer">
+        <span class="resource-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/></svg>
+        </span>
         <span>GitHub</span>
       </a>
 
       <a class="resource-card" href="mailto:joribaaljahr@gmail.com">
-        <span class="resource-icon" aria-hidden="true">@</span>
+        <span class="resource-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm9 7 8-5H4l8 5Zm0 2.3L3 8.7V17h18V8.7l-9 5.6Z"/></svg>
+        </span>
         <span>Email</span>
       </a>
 
-      <a
-        class="resource-card"
-        href="https://drive.google.com/file/d/1RtFsMRXNbHhp6dhLcd7feq8bBUw80Rer/view?usp=sharing"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="resource-icon" aria-hidden="true">CV</span>
+      <a class="resource-card" href="https://drive.google.com/file/d/1RtFsMRXNbHhp6dhLcd7feq8bBUw80Rer/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <span class="resource-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M6 2h8l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm7 1.5V8h4.5L13 3.5ZM8 13h8v-2H8v2Zm0 4h8v-2H8v2Z"/></svg>
+        </span>
         <span>CV</span>
       </a>
 
-      <a
-        class="resource-card"
-        href="https://www.linkedin.com/in/jori-baaljahr-374113273"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="resource-icon" aria-hidden="true">in</span>
+      <a class="resource-card" href="https://www.linkedin.com/in/jori-baaljahr-374113273" target="_blank" rel="noopener noreferrer">
+        <span class="resource-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M5.3 7.8A2.3 2.3 0 1 1 5.3 3a2.3 2.3 0 0 1 0 4.7ZM3.3 9.4h4V21h-4V9.4Zm6.4 0h3.8V11h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.7 4.8 6.1V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21h-4V9.4Z"/></svg>
+        </span>
         <span>LinkedIn</span>
       </a>
     </div>
@@ -184,6 +96,6 @@
   <span>Artificial Intelligence Portfolio</span>
 </footer>
 
-<script src="script.js?v=22"></script>
+<script src="script.js?v=17"></script>
 </body>
 </html>
