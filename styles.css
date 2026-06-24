@@ -716,3 +716,43 @@
   object-fit: contain;
   border-radius: 14px;
 }
+
+
+/* HERO ONLY — all project visuals remain untouched */
+.hero-redesign {
+  min-height: 100vh;
+  padding: 150px max(3vw, 30px) 50px;
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(560px, 1.18fr);
+  align-items: center;
+  gap: 28px;
+  overflow: hidden;
+  background: radial-gradient(circle at 72% 45%, rgba(67,52,190,.14), transparent 34%), #050914;
+}
+.hero-redesign .hero-content { max-width: 710px; z-index: 2; }
+.hero-redesign h1 { margin:0; font-size:clamp(4.6rem,7vw,8rem); line-height:.9; letter-spacing:-.07em; }
+.hero-redesign h1 span,.hero-redesign h1 strong{display:block}
+.hero-redesign h1 strong{margin-top:18px;background:linear-gradient(90deg,#6678ff,#7b52ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-redesign h2{margin:44px 0 0;font-size:clamp(1.7rem,2.4vw,2.8rem)}
+.hero-redesign h2 span{color:#9287ff}
+.hero-redesign .count{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hero-visual{position:relative;min-height:650px;display:grid;place-items:center}
+.tech-illustration{width:100%;height:auto;max-width:900px;display:block}
+@media(max-width:1100px){.hero-redesign{grid-template-columns:1fr;padding-top:160px}.hero-redesign .hero-content{text-align:center;margin:auto}.hero-visual{min-height:520px}.tech-illustration{max-width:760px}}
+@media(max-width:650px){.hero-redesign{padding-left:18px;padding-right:18px}.hero-redesign h1{font-size:clamp(3.7rem,17vw,5.3rem)}.hero-visual{min-height:360px}.tech-illustration{max-width:100%}}
+
+
+/* FINAL HOME HERO ONLY — project cards and project pages are untouched */
+.hero-redesign{min-height:calc(100vh - 110px);display:grid;grid-template-columns:minmax(0,.78fr) minmax(540px,1.22fr);align-items:center;gap:22px;text-align:left;padding:60px max(2.8vw,30px) 80px;background:radial-gradient(circle at 74% 42%,rgba(78,61,194,.12),transparent 34%),linear-gradient(180deg,#050914,#070b16)}
+.hero-redesign::after{display:none}
+.hero-redesign .hero-content{max-width:680px;z-index:2}
+.hero-redesign .kicker{margin:0 0 36px;font-size:1rem;letter-spacing:.22em;color:#9a8cff}
+.hero-redesign h1{margin:0;font-size:clamp(4.6rem,7vw,8rem);line-height:.89;letter-spacing:-.075em}
+.hero-redesign h1 span,.hero-redesign h1 strong{display:block}
+.hero-redesign h1 strong{margin-top:18px;background:linear-gradient(90deg,#6779ff,#7a52ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-redesign h2{margin:48px 0 0;font-size:clamp(1.7rem,2.4vw,2.8rem);letter-spacing:-.045em}
+.hero-redesign h2 span{color:#9387ff}
+.hero-visual{position:relative;min-height:660px;display:grid;place-items:center}
+.tech-illustration{display:block;width:100%;max-width:930px;height:auto}
+@media(max-width:1100px){.hero-redesign{grid-template-columns:1fr;padding-top:80px}.hero-redesign .hero-content{text-align:center;margin:auto}.hero-visual{min-height:520px}.tech-illustration{max-width:780px}}
+@media(max-width:650px){.hero-redesign{padding-left:18px;padding-right:18px}.hero-redesign h1{font-size:clamp(3.7rem,17vw,5.3rem)}.hero-visual{min-height:360px}.tech-illustration{max-width:100%}}

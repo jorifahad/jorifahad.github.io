@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Jori Fahad Baaljahr | AI Portfolio</title>
-  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="styles.css?v=31">
 </head>
 <body>
 <header>
@@ -20,16 +20,110 @@
 </header>
 
 <main>
-  <section class="hero">
-    <canvas id="ai-network"></canvas>
+  <section class="hero hero-redesign">
     <div class="hero-content">
       <p class="kicker">Artificial Intelligence</p>
-      <h1>Jori Fahad Baaljahr</h1>
+      <h1><span>Jori Fahad</span><strong>Baaljahr</strong></h1>
       <h2>Building practical <span>AI solutions</span></h2>
-      <div class="count">
-        <b id="project-count">11</b>
-        <small>Selected Projects</small>
-      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg class="tech-illustration" viewBox="0 0 980 720" role="presentation">
+        <defs>
+          <linearGradient id="screenBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#18214a"/>
+            <stop offset="1" stop-color="#05091a"/>
+          </linearGradient>
+          <linearGradient id="edgeGlow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#8c7dff"/>
+            <stop offset="1" stop-color="#4c42ff"/>
+          </linearGradient>
+          <linearGradient id="baseBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#20295c"/>
+            <stop offset="1" stop-color="#070b1f"/>
+          </linearGradient>
+          <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="deepShadow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="22" stdDeviation="18" flood-color="#000" flood-opacity=".55"/>
+          </filter>
+        </defs>
+
+        <!-- circuit background -->
+        <g opacity=".42" stroke="#4a52be" stroke-width="1.2" fill="none">
+          <path d="M70 205L205 130L350 205L515 120L700 205L880 125"/>
+          <path d="M55 500L215 430L380 510L560 435L845 525"/>
+          <path d="M205 130L215 430M350 205L380 510M515 120L560 435M700 205L845 525"/>
+          <path d="M110 300L270 235L420 300L600 245L770 305"/>
+          <path d="M115 615L310 565L510 620L720 565L900 615"/>
+        </g>
+        <g fill="#8178ff" filter="url(#softGlow)">
+          <circle cx="70" cy="205" r="4"/><circle cx="205" cy="130" r="4"/>
+          <circle cx="350" cy="205" r="4"/><circle cx="515" cy="120" r="4"/>
+          <circle cx="700" cy="205" r="4"/><circle cx="880" cy="125" r="4"/>
+          <circle cx="55" cy="500" r="4"/><circle cx="215" cy="430" r="4"/>
+          <circle cx="380" cy="510" r="4"/><circle cx="560" cy="435" r="4"/>
+          <circle cx="845" cy="525" r="4"/><circle cx="900" cy="615" r="4"/>
+        </g>
+
+        <!-- laptop screen -->
+        <g transform="translate(170 100)" filter="url(#deepShadow)">
+          <rect x="115" y="35" width="440" height="335" rx="24" fill="url(#screenBg)" stroke="url(#edgeGlow)" stroke-width="3"/>
+          <path d="M116 54Q116 36 136 36H532" stroke="#aa9cff" stroke-width="3" opacity=".7"/>
+          <circle cx="143" cy="65" r="5" fill="#8d82ff"/><circle cx="160" cy="65" r="5" fill="#8d82ff"/><circle cx="177" cy="65" r="5" fill="#8d82ff"/>
+          <g font-family="monospace" font-size="17" font-weight="600">
+            <text x="150" y="115" fill="#dd7eff">class</text><text x="205" y="115" fill="#d7e1ff">NeuralNetwork(nn.Module):</text>
+            <text x="171" y="151" fill="#dd7eff">def</text><text x="211" y="151" fill="#d7e1ff">__init__(self):</text>
+            <text x="203" y="186" fill="#d7e1ff">super().__init__()</text>
+            <text x="203" y="221" fill="#d7e1ff">self.fc1 = nn.Linear(128, 64)</text>
+            <text x="203" y="256" fill="#d7e1ff">self.fc2 = nn.Linear(64, 32)</text>
+            <text x="171" y="305" fill="#dd7eff">def</text><text x="211" y="305" fill="#d7e1ff">forward(self, x):</text>
+            <text x="203" y="340" fill="#d7e1ff">return self.fc2(x)</text>
+          </g>
+
+          <!-- laptop base -->
+          <path d="M36 382 L612 382 L710 535 L0 535 Z" fill="url(#baseBg)" stroke="url(#edgeGlow)" stroke-width="3"/>
+          <path d="M42 385H605" stroke="#9c8cff" stroke-width="3" opacity=".8"/>
+          <g fill="#252d59" stroke="#605cc8" stroke-width=".8">
+            <rect x="84" y="408" width="48" height="20" rx="4"/><rect x="138" y="408" width="48" height="20" rx="4"/><rect x="192" y="408" width="48" height="20" rx="4"/><rect x="246" y="408" width="48" height="20" rx="4"/><rect x="300" y="408" width="48" height="20" rx="4"/><rect x="354" y="408" width="48" height="20" rx="4"/><rect x="408" y="408" width="48" height="20" rx="4"/>
+            <rect x="84" y="434" width="48" height="20" rx="4"/><rect x="138" y="434" width="48" height="20" rx="4"/><rect x="192" y="434" width="48" height="20" rx="4"/><rect x="246" y="434" width="48" height="20" rx="4"/><rect x="300" y="434" width="48" height="20" rx="4"/><rect x="354" y="434" width="48" height="20" rx="4"/><rect x="408" y="434" width="48" height="20" rx="4"/>
+            <rect x="84" y="460" width="48" height="20" rx="4"/><rect x="138" y="460" width="48" height="20" rx="4"/><rect x="192" y="460" width="48" height="20" rx="4"/><rect x="246" y="460" width="48" height="20" rx="4"/><rect x="300" y="460" width="48" height="20" rx="4"/><rect x="354" y="460" width="48" height="20" rx="4"/><rect x="408" y="460" width="48" height="20" rx="4"/>
+          </g>
+          <rect x="485" y="425" width="125" height="68" rx="10" fill="none" stroke="#5e58c9"/>
+        </g>
+
+        <!-- neural card -->
+        <g transform="translate(710 75)" filter="url(#deepShadow)">
+          <rect width="155" height="150" rx="22" fill="url(#screenBg)" stroke="#8178ff"/>
+          <g stroke="#8f88ff" stroke-width="2">
+            <path d="M37 45L77 25L118 55L91 108L46 101Z"/>
+            <path d="M37 45L91 108M77 25L46 101M118 55L37 45M77 25L91 108"/>
+          </g>
+          <g fill="#8f88ff"><circle cx="37" cy="45" r="7"/><circle cx="77" cy="25" r="7"/><circle cx="118" cy="55" r="7"/><circle cx="91" cy="108" r="7"/><circle cx="46" cy="101" r="7"/></g>
+        </g>
+
+        <!-- bars card -->
+        <g transform="translate(790 260)" filter="url(#deepShadow)">
+          <rect width="140" height="140" rx="22" fill="url(#screenBg)" stroke="#8178ff"/>
+          <rect x="28" y="76" width="17" height="36" rx="3" fill="url(#edgeGlow)"/>
+          <rect x="57" y="55" width="17" height="57" rx="3" fill="url(#edgeGlow)"/>
+          <rect x="86" y="30" width="17" height="82" rx="3" fill="url(#edgeGlow)"/>
+        </g>
+
+        <!-- code card -->
+        <g transform="translate(735 425)" filter="url(#deepShadow)">
+          <rect width="150" height="140" rx="22" fill="url(#screenBg)" stroke="#8178ff"/>
+          <text x="75" y="91" text-anchor="middle" font-family="monospace" font-size="48" font-weight="700" fill="#8f88ff">&lt;/&gt;</text>
+        </g>
+
+        <!-- wave card -->
+        <g transform="translate(590 540)" filter="url(#deepShadow)">
+          <rect width="290" height="125" rx="22" fill="url(#screenBg)" stroke="#8178ff"/>
+          <path d="M25 72 C60 17, 95 108, 135 57 S205 22, 262 78" fill="none" stroke="#8f76ff" stroke-width="5" stroke-linecap="round" filter="url(#softGlow)"/>
+        </g>
+      </svg>
     </div>
   </section>
 
