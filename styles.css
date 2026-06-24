@@ -718,44 +718,83 @@
 }
 
 
-/* FINAL HOMEPAGE HERO — project cards and project pages remain unchanged */
+/* =========================================================
+   FINAL HOMEPAGE HERO
+   Uses the original animated #ai-network from script.js.
+   Project cards and project pages remain unchanged.
+   ========================================================= */
+
 .hero.hero-redesign {
   min-height: calc(100vh - 110px);
-  padding: 70px max(3vw, 28px) 60px;
-  display: grid;
-  grid-template-columns: minmax(460px, 0.82fr) minmax(560px, 1.18fr);
-  align-items: center;
-  gap: 26px;
+  position: relative;
   overflow: hidden;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(430px, .78fr) minmax(580px, 1.22fr);
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 44px max(2.5vw, 28px) 72px;
   text-align: left;
   background: #01020b;
 }
 
 .hero.hero-redesign::after {
-  display: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1,2,11,.90) 0%,
+      rgba(1,2,11,.62) 35%,
+      rgba(1,2,11,.13) 64%,
+      rgba(1,2,11,.04) 100%
+    ),
+    radial-gradient(
+      circle at 67% 48%,
+      rgba(108,88,255,.08),
+      transparent 42%
+    );
+}
+
+.hero-redesign #ai-network {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero-redesign .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
-  max-width: 700px;
+  max-width: 680px;
   justify-self: start;
+
+  /* Move the text slightly upward */
+  transform: translateY(-34px);
 }
 
 .hero-redesign .kicker {
   margin: 0 0 34px;
   color: #9589ff;
   font-size: 1rem;
-  letter-spacing: 0.22em;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
 }
 
 .hero-redesign h1 {
   max-width: none;
   margin: 0;
-  font-size: clamp(4.8rem, 7.2vw, 8rem);
-  line-height: 0.9;
-  letter-spacing: -0.07em;
+  font-size: clamp(4.8rem, 7.1vw, 8rem);
+  line-height: .88;
+  letter-spacing: -.075em;
 }
 
 .hero-redesign h1 span,
@@ -765,7 +804,7 @@
 
 .hero-redesign h1 strong {
   margin-top: 20px;
-  background: linear-gradient(90deg, #6679ff 0%, #825eff 100%);
+  background: linear-gradient(90deg, #697bff 0%, #8063ff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -773,37 +812,42 @@
 
 .hero-redesign h2 {
   margin: 44px 0 0;
-  font-size: clamp(1.8rem, 2.65vw, 3.15rem);
+  font-size: clamp(1.8rem, 2.6vw, 3.05rem);
   line-height: 1.1;
-  letter-spacing: -0.045em;
+  letter-spacing: -.05em;
 }
 
 .hero-redesign h2 span {
   color: #8c76ff;
 }
 
-.hero-visual {
+.hero-redesign .hero-visual {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   min-width: 0;
   min-height: 650px;
   display: grid;
   place-items: center;
   overflow: visible;
-  background: #01020b;
+  background: transparent;
 }
 
-.hero-visual::before {
+.hero-redesign .hero-visual::before {
   content: "";
   position: absolute;
-  inset: 8% 4%;
-  background: radial-gradient(circle, rgba(104, 81, 255, 0.12), transparent 65%);
-  filter: blur(36px);
+  inset: 8% 3%;
+  z-index: 0;
   pointer-events: none;
+  background: radial-gradient(
+    circle,
+    rgba(103,83,255,.10),
+    transparent 67%
+  );
+  filter: blur(34px);
 }
 
-.hero-visual img {
+.hero-redesign .hero-visual img {
   position: relative;
   z-index: 1;
   display: block;
@@ -818,22 +862,28 @@
   transform: none;
 }
 
+/* Keep the project count available to script.js without displaying it. */
+.hero-redesign #project-count[hidden] {
+  display: none !important;
+}
+
 @media (max-width: 1120px) {
   .hero.hero-redesign {
     grid-template-columns: 1fr;
-    padding-top: 80px;
+    padding-top: 58px;
   }
 
   .hero-redesign .hero-content {
     justify-self: center;
     text-align: center;
+    transform: translateY(-10px);
   }
 
-  .hero-visual {
+  .hero-redesign .hero-visual {
     min-height: 520px;
   }
 
-  .hero-visual img {
+  .hero-redesign .hero-visual img {
     width: min(100%, 760px);
     max-height: 560px;
   }
@@ -842,13 +892,17 @@
 @media (max-width: 650px) {
   .hero.hero-redesign {
     min-height: auto;
-    padding: 54px 18px 70px;
-    gap: 28px;
+    padding: 44px 18px 64px;
+    gap: 24px;
+  }
+
+  .hero-redesign .hero-content {
+    transform: none;
   }
 
   .hero-redesign .kicker {
     margin-bottom: 22px;
-    font-size: 0.78rem;
+    font-size: .76rem;
   }
 
   .hero-redesign h1 {
@@ -860,49 +914,12 @@
     font-size: clamp(1.45rem, 7vw, 2rem);
   }
 
-  .hero-visual {
+  .hero-redesign .hero-visual {
     min-height: 330px;
   }
 
-  .hero-visual img {
+  .hero-redesign .hero-visual img {
     width: min(100%, 520px);
     max-height: 360px;
   }
-}
-
-
-/* Animated network background — homepage hero only */
-.hero.hero-redesign {
-  isolation: isolate;
-}
-
-#hero-network {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.hero-redesign .hero-content,
-.hero-redesign .hero-visual {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-redesign::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(1, 2, 11, 0.96) 0%,
-      rgba(1, 2, 11, 0.78) 38%,
-      rgba(1, 2, 11, 0.22) 68%,
-      rgba(1, 2, 11, 0.08) 100%
-    );
 }
