@@ -8,7 +8,7 @@
     name="description"
     content="Artificial Intelligence portfolio of Jori Fahad Baaljahr."
   >
-  <link rel="stylesheet" href="styles.css?v=21">
+  <link rel="stylesheet" href="styles.css?v=22">
 </head>
 
 <body>
@@ -54,11 +54,52 @@
     </div>
 
     <div class="hero-tech" aria-hidden="true">
-      <img
-        src="hero-tech.png"
-        alt=""
-        class="hero-tech-image"
-      >
+      <div class="tech-scene">
+        <div class="laptop">
+          <div class="laptop-screen">
+            <div class="screen-topbar">
+              <span></span><span></span><span></span>
+            </div>
+            <pre><code><span>class</span> NeuralNetwork(nn.Module):
+    <span>def</span> __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(128, 64)
+        self.fc2 = nn.Linear(64, 32)
+
+    <span>def</span> forward(self, x):
+        x = torch.relu(self.fc1(x))
+        return self.fc2(x)</code></pre>
+          </div>
+
+          <div class="laptop-base">
+            <div class="keyboard">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="trackpad"></div>
+          </div>
+        </div>
+
+        <div class="tech-card neural-card">
+          <div class="mini-nn">
+            <b></b><b></b><b></b><b></b><b></b><b></b>
+          </div>
+        </div>
+
+        <div class="tech-card bars-card">
+          <i></i><i></i><i></i><i></i>
+        </div>
+
+        <div class="tech-card code-icon-card">&lt;/&gt;</div>
+
+        <div class="tech-card wave-card">
+          <svg viewBox="0 0 220 90" aria-hidden="true">
+            <path d="M0 50 C25 5, 45 85, 75 45 S125 5, 150 50 S195 85, 220 35" />
+          </svg>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -143,6 +184,6 @@
   <span>Artificial Intelligence Portfolio</span>
 </footer>
 
-<script src="script.js?v=21"></script>
+<script src="script.js?v=22"></script>
 </body>
 </html>
