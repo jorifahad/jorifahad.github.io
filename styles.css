@@ -644,324 +644,61 @@
 }
 
 
-/* Projects heading and year sorting dropdown */
-.projects-heading-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 28px;
-  margin: .15em 0 .75em;
-}
-
-.projects-heading-row h2 {
-  margin: 0;
-  font-size: clamp(3rem, 6vw, 6rem);
-  letter-spacing: -.06em;
-}
-
-.project-sort {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  min-width: 210px;
-  color: #aab3c6;
-  font-size: .74rem;
-  font-weight: 800;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-}
-
-.project-sort select {
-  width: 100%;
-  padding: 14px 42px 14px 16px;
-  border: 1px solid #2d3856;
-  border-radius: 16px;
-  background: #11182b;
-  color: #f7f8fc;
-  font: inherit;
-  font-size: .9rem;
-  letter-spacing: 0;
-  text-transform: none;
-  cursor: pointer;
-}
-
-@media (max-width: 700px) {
-  .projects-heading-row {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .project-sort {
-    width: 100%;
-  }
-}
-
-
-/* MERSAD homepage card — use the uploaded project logo */
-.visual-mersad {
-  background: #07101f;
-}
-
-.mersad-logo-scene {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-}
-
-.mersad-logo-scene img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 14px;
-}
-
-
 /* =========================================================
-   FINAL HOMEPAGE HERO
-   Uses the original animated #ai-network from script.js.
-   Project cards and project pages remain unchanged.
+   APPROVED IMAGE VISUALS FOR SELECTED PROJECT CARDS
+   This does not change the remaining project cards.
    ========================================================= */
 
-.hero.hero-redesign {
-  min-height: calc(100vh - 110px);
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: minmax(430px, .78fr) minmax(580px, 1.22fr);
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  padding: 44px max(2.5vw, 28px) 72px;
-  text-align: left;
-  background: #01020b;
-}
-
-.hero.hero-redesign::after {
-  content: "";
+.project-card-image {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(1,2,11,.90) 0%,
-      rgba(1,2,11,.62) 35%,
-      rgba(1,2,11,.13) 64%,
-      rgba(1,2,11,.04) 100%
-    ),
-    radial-gradient(
-      circle at 67% 48%,
-      rgba(108,88,255,.08),
-      transparent 42%
-    );
-}
-
-.hero-redesign #ai-network {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  overflow: hidden;
 }
 
-.hero-redesign .hero-content {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 680px;
-  justify-self: start;
-
-  /* Move the text slightly upward */
-  transform: translateY(-34px);
-}
-
-.hero-redesign .kicker {
-  margin: 0 0 34px;
-  color: #9589ff;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-}
-
-.hero-redesign h1 {
-  max-width: none;
-  margin: 0;
-  font-size: clamp(4.8rem, 7.1vw, 8rem);
-  line-height: .88;
-  letter-spacing: -.075em;
-}
-
-.hero-redesign h1 span,
-.hero-redesign h1 strong {
+.project-card-image img {
   display: block;
-}
-
-.hero-redesign h1 strong {
-  margin-top: 20px;
-  background: linear-gradient(90deg, #697bff 0%, #8063ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.hero-redesign h2 {
-  margin: 44px 0 0;
-  font-size: clamp(1.8rem, 2.6vw, 3.05rem);
-  line-height: 1.1;
-  letter-spacing: -.05em;
-}
-
-.hero-redesign h2 span {
-  color: #8c76ff;
-}
-
-.hero-redesign .hero-visual {
-  position: relative;
-  z-index: 2;
   width: 100%;
-  min-width: 0;
-  min-height: 650px;
-  display: grid;
-  place-items: center;
-  overflow: visible;
-  background: transparent;
-}
-
-.hero-redesign .hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 8% 3%;
-  z-index: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    circle,
-    rgba(103,83,255,.10),
-    transparent 67%
-  );
-  filter: blur(34px);
-}
-
-.hero-redesign .hero-visual img {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: min(100%, 900px);
-  height: auto;
-  max-height: 720px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
   object-position: center;
-  background: transparent;
-  border: 0;
-  box-shadow: none;
-  transform: none;
+  background: #080d19;
 }
 
-/* Keep the project count available to script.js without displaying it. */
-.hero-redesign #project-count[hidden] {
-  display: none !important;
+/* The approved images already contain their own project title. */
+.visual-tunnel-robot .visual-label,
+.visual-arabic-news .visual-label,
+.visual-ood-scene .visual-label,
+.visual-mersad .visual-label,
+.visual-enhanced-mbrec .visual-label {
+  display: none;
 }
 
-@media (max-width: 1120px) {
-  .hero.hero-redesign {
-    grid-template-columns: 1fr;
-    padding-top: 58px;
-  }
-
-  .hero-redesign .hero-content {
-    justify-self: center;
-    text-align: center;
-    transform: translateY(-10px);
-  }
-
-  .hero-redesign .hero-visual {
-    min-height: 520px;
-  }
-
-  .hero-redesign .hero-visual img {
-    width: min(100%, 760px);
-    max-height: 560px;
-  }
+/* Remove old generated backgrounds only from these five visuals. */
+.visual-tunnel-robot,
+.visual-arabic-news,
+.visual-ood-scene,
+.visual-mersad,
+.visual-enhanced-mbrec {
+  background: #080d19;
 }
 
-@media (max-width: 650px) {
-  .hero.hero-redesign {
-    min-height: auto;
-    padding: 44px 18px 64px;
-    gap: 24px;
-  }
-
-  .hero-redesign .hero-content {
-    transform: none;
-  }
-
-  .hero-redesign .kicker {
-    margin-bottom: 22px;
-    font-size: .76rem;
-  }
-
-  .hero-redesign h1 {
-    font-size: clamp(3.6rem, 18vw, 5rem);
-  }
-
-  .hero-redesign h2 {
-    margin-top: 28px;
-    font-size: clamp(1.45rem, 7vw, 2rem);
-  }
-
-  .hero-redesign .hero-visual {
-    min-height: 330px;
-  }
-
-  .hero-redesign .hero-visual img {
-    width: min(100%, 520px);
-    max-height: 360px;
-  }
+/* Make the new images fill the same 230px card area cleanly. */
+.visual-tunnel-robot .visual-art,
+.visual-arabic-news .visual-art,
+.visual-ood-scene .visual-art,
+.visual-mersad .visual-art,
+.visual-enhanced-mbrec .visual-art {
+  width: 100%;
+  height: 100%;
 }
 
-
-/* FINAL TEXT POSITION FIX */
-.hero-redesign .hero-content {
-  max-width: 760px;
-  transform: translateY(-58px);
-}
-
-.hero-redesign h1 {
-  font-size: clamp(4.4rem, 6.4vw, 7.3rem);
-  line-height: .9;
-  letter-spacing: -.068em;
-}
-
-.hero-redesign h1 span {
-  white-space: nowrap;
-}
-
-.hero-redesign h1 strong {
-  margin-top: 18px;
-}
-
-.hero-redesign h2 {
-  margin-top: 34px;
-  font-size: clamp(1.75rem, 2.45vw, 2.9rem);
-}
-
-@media (max-width: 1120px) {
-  .hero-redesign .hero-content {
-    transform: translateY(-18px);
-  }
-
-  .hero-redesign h1 span {
-    white-space: normal;
-  }
-}
-
-@media (max-width: 650px) {
-  .hero-redesign .hero-content {
-    transform: none;
-  }
+/* Hide the grid overlay on image-based cards. */
+.visual-tunnel-robot .visual-grid,
+.visual-arabic-news .visual-grid,
+.visual-ood-scene .visual-grid,
+.visual-mersad .visual-grid,
+.visual-enhanced-mbrec .visual-grid {
+  display: none;
 }
