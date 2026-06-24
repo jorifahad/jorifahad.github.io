@@ -923,3 +923,45 @@
     max-height: 360px;
   }
 }
+
+
+/* FINAL TEXT POSITION FIX */
+.hero-redesign .hero-content {
+  max-width: 760px;
+  transform: translateY(-58px);
+}
+
+.hero-redesign h1 {
+  font-size: clamp(4.4rem, 6.4vw, 7.3rem);
+  line-height: .9;
+  letter-spacing: -.068em;
+}
+
+.hero-redesign h1 span {
+  white-space: nowrap;
+}
+
+.hero-redesign h1 strong {
+  margin-top: 18px;
+}
+
+.hero-redesign h2 {
+  margin-top: 34px;
+  font-size: clamp(1.75rem, 2.45vw, 2.9rem);
+}
+
+@media (max-width: 1120px) {
+  .hero-redesign .hero-content {
+    transform: translateY(-18px);
+  }
+
+  .hero-redesign h1 span {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-redesign .hero-content {
+    transform: none;
+  }
+}
