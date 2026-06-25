@@ -126,11 +126,13 @@ function createProjectMedia(project) {
     `;
   }
 
-  if (project.image && project.image !== "#") {
+  const mediaImage = project.image && project.image !== "#" ? project.image : (project.cardImage && project.cardImage !== "#" ? project.cardImage : "");
+
+  if (mediaImage) {
     return `
       <div class="cover image-cover">
         <img
-          src="${escapeHtml(project.image)}"
+          src="${escapeHtml(mediaImage)}"
           alt="${escapeHtml(project.title)} project preview"
         >
       </div>
