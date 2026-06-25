@@ -983,19 +983,37 @@
 @media(max-width:600px){.visual.visual-image-card{padding:0 !important;}}
 
 
-/* Visible fix for Logistics RAG + Enterprise AI only */
+/* FIX: keep all text visible in Logistics RAG and Enterprise AI cards */
+.project-logistics-rag .visual-image-fill img,
+.project-enterprise-ai .visual-image-fill img {
+  transform: none !important;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.project-logistics-rag .visual-image-fill::after,
+.project-enterprise-ai .visual-image-fill::after {
+  display: none;
+}
+
+
+/* FINAL — only Logistics RAG and Enterprise AI
+   No internal crop; move both images slightly upward. */
 .project-logistics-rag .visual-image-fill,
 .project-enterprise-ai .visual-image-fill {
-  background: #080d19 !important;
-  overflow: hidden !important;
+  background: #080d19;
 }
 
 .project-logistics-rag .visual-image-fill img,
 .project-enterprise-ai .visual-image-fill img {
   width: 100% !important;
-  height: 100% !important;
+  height: 104% !important;
   object-fit: contain !important;
   object-position: center center !important;
-  transform: scale(0.97) !important;
-  transform-origin: center center !important;
+  transform: translateY(-4%) !important;
+}
+
+.project-logistics-rag .visual-image-fill::after,
+.project-enterprise-ai .visual-image-fill::after {
+  display: none !important;
 }
