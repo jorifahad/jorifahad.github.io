@@ -1368,63 +1368,46 @@ header {
 
 
 /* =========================================================
-   SITE-WIDE ANIMATED BACKGROUND
-   Matches the homepage color and network effect everywhere.
+   UNIFIED SITE BACKGROUND
+   Matches the homepage hero background across the full site.
    ========================================================= */
-html {
-  background: #01020b;
-}
 
+html,
 body {
-  position: relative;
-  min-height: 100vh;
-  background: transparent !important;
+  background: #01020b !important;
 }
 
-#site-network {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(111, 99, 255, .06), transparent 30%),
-    radial-gradient(circle at 78% 58%, rgba(121, 93, 255, .055), transparent 35%),
-    linear-gradient(180deg, rgba(1, 2, 11, .20), rgba(1, 2, 11, .55));
-}
-
-header,
+body,
 main,
+.project,
+.section,
 footer {
-  position: relative;
-  z-index: 2;
+  background-color: #01020b;
 }
 
 header {
-  background: linear-gradient(rgba(1,2,11,.96) 72%, transparent) !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(1, 2, 11, 0.98) 72%,
+    rgba(1, 2, 11, 0)
+  ) !important;
 }
 
-.section,
-.project,
-.projectHero {
-  background: transparent;
+/* Prevent any visible color strip between homepage sections. */
+.hero,
+.hero.hero-redesign,
+#projects,
+#about,
+#resources {
+  background-color: #01020b;
 }
 
-/* Prevent the project page from introducing a different solid strip. */
-.project {
-  min-height: 100vh;
-}
-
-footer {
-  background: rgba(1, 2, 11, .34);
-  backdrop-filter: blur(8px);
+@media (max-width: 900px) {
+  header {
+    background: linear-gradient(
+      to bottom,
+      rgba(1, 2, 11, 0.98) 78%,
+      rgba(1, 2, 11, 0)
+    ) !important;
+  }
 }
