@@ -1,6 +1,7 @@
 const grid = document.getElementById("projects-grid");
 const count = document.getElementById("project-count");
 
+
 const projectCardImages = {
   "mindwatch": "mindwatch-card.png",
   "logistics-rag": "logistics-rag-card.png",
@@ -11,24 +12,34 @@ const projectCardImages = {
   "flight-delay": "flight-delay-card.png",
   "tunnel-robot": "tunnel-robot-card.png",
   "bilingual-ocr": "bilingual-ocr-card.png",
-  "enhanced-mbrec": "mbrec-card.png",
-  "orbscope": "orbscope-card.png"
+  "orbscope": "orbscope-card.png",
+  "mbrec": "mbrec-card.png",
+  "enhanced-mbrec": "mbrec-card.png"
 };
 
-let loadedProjects = [];
+let allProjects = [];
+const sortSelect = document.getElementById("project-sort");
 
 function renderProjects(projects) {
-  if (count) count.textContent = projects.length;
-
+  if (!grid) return;
   grid.innerHTML = projects.map((project) => {
-    const cardImage = projectCardImages[project.id];
+    const image = project.cardImage || projectCardImages[project.id] || project.image;
+    const visual = image
+      ? `
+        <div class="visual visual-image-card">
+          <div class="visual-image-fill">
+            <img src="${image}" alt="${project.title} preview">
+          </div>
+        </div>`
+      : `
+        <div class="visual visual-${project.id}">
+          <div class="visual-grid"></div>
+          <div class="visual-art"><div class="default-visual">AI</div></div>
+        </div>`;
 
     return `
       <a class="card project-${project.id}" href="project.html?id=${encodeURIComponent(project.id)}">
-        <div class="visual visual-image-card">
-          <img src="${cardImage}" alt="${project.title} project preview">
-        </div>
-
+        ${visual}
         <div class="pad">
           <p class="kicker">${project.year}</p>
           <h3>${project.title}</h3>
@@ -37,24 +48,17 @@ function renderProjects(projects) {
             ${(project.focus || []).slice(0, 4).map((item) => `<span>${item}</span>`).join("")}
           </div>
         </div>
-      </a>
-    `;
+      </a>`;
   }).join("");
 }
 
-function sortProjects(order = "newest") {
-  const sortedProjects = [...loadedProjects].sort((a, b) => {
-    const yearA = Number(a.year) || 0;
-    const yearB = Number(b.year) || 0;
-
-    if (yearA === yearB) {
-      return a.title.localeCompare(b.title);
-    }
-
-    return order === "oldest" ? yearA - yearB : yearB - yearA;
+function sortProjects(mode) {
+  const items = [...allProjects].sort((a, b) => {
+    const ay = Number(a.year) || 0;
+    const by = Number(b.year) || 0;
+    return mode === "oldest" ? ay - by : by - ay;
   });
-
-  renderProjects(sortedProjects);
+  renderProjects(items);
 }
 
 fetch("./projects.json")
@@ -63,20 +67,20 @@ fetch("./projects.json")
     return response.json();
   })
   .then((projects) => {
-    loadedProjects = projects;
-    sortProjects("newest");
-
-    const sortSelect = document.getElementById("project-sort");
-    if (sortSelect) {
-      sortSelect.addEventListener("change", (event) => {
-        sortProjects(event.target.value);
-      });
-    }
+    allProjects = Array.isArray(projects) ? projects : [];
+    if (count) count.textContent = allProjects.length;
+    sortProjects(sortSelect?.value || "newest");
   })
   .catch((error) => {
     console.error(error);
-    grid.innerHTML = `<p class="error-message">${error.message}</p>`;
+    if (grid) grid.innerHTML = `<p class="error-message">${error.message}</p>`;
   });
+
+if (sortSelect) {
+  sortSelect.addEventListener("change", (event) => {
+    sortProjects(event.target.value);
+  });
+}
 
 const canvas = document.getElementById("ai-network");
 
