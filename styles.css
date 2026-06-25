@@ -928,6 +928,8 @@
 /* --- Static project card images update --- */
 
 .visual.visual-image-card{
+  height:auto;
+  aspect-ratio:1672 / 941;
   padding:0;
   overflow:hidden;
   background:#090f22;
@@ -937,6 +939,7 @@
   position:relative;
   width:100%;
   height:100%;
+  overflow:hidden;
 }
 
 .visual-image-fill img{

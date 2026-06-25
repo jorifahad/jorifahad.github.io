@@ -1,15 +1,9 @@
-# Jori Fahad Baaljahr — AI Portfolio
+# Jori AI Portfolio - Updated Static Project Cards
 
-A personal portfolio showcasing selected artificial intelligence projects across machine learning, deep learning, computer vision, natural language processing, generative AI, multimodal learning, robotics, recommender systems, and optimization.
+This package includes:
+- Updated hero section files
+- Static project card images integrated into the homepage
+- Updated project detail pages with image fallback
+- All project card visuals set to fill their containers without extra side gaps
 
-The portfolio highlights practical, end-to-end work including model development, evaluation, experimentation, and deployment-ready applications.
-
-## Live Website
-
-**https://jorifahad.github.io**
-
-## Contact
-
-- GitHub: https://github.com/jorifahad
-- LinkedIn: https://www.linkedin.com/in/jori-baaljahr-374113273
-- Email: joribaaljahr@gmail.com
+Open `index.html` to view the homepage.
