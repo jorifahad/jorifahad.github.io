@@ -1032,3 +1032,10 @@
   object-fit: cover !important;
   object-position: center center !important;
 }
+
+
+/* Raise only the two external card images slightly without cropping them */
+.project-logistics-rag .visual-image-fill img,
+.project-enterprise-ai .visual-image-fill img {
+  object-position: center 44% !important;
+}
