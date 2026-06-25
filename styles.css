@@ -983,15 +983,17 @@
 @media(max-width:600px){.visual.visual-image-card{padding:0 !important;}}
 
 
-/* FIX: keep all text visible in Logistics RAG and Enterprise AI cards */
-.project-logistics-rag .visual-image-fill img,
-.project-enterprise-ai .visual-image-fill img {
-  transform: none !important;
-  object-fit: cover;
-  object-position: center center;
+/* FIX ONLY: Logistics RAG + Enterprise AI external card images */
+.project-logistics-rag .visual-image-fill,
+.project-enterprise-ai .visual-image-fill {
+  background: #080d19;
 }
 
-.project-logistics-rag .visual-image-fill::after,
-.project-enterprise-ai .visual-image-fill::after {
-  display: none;
+.project-logistics-rag .visual-image-fill img,
+.project-enterprise-ai .visual-image-fill img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center top !important;
+  transform: translateY(-8px) !important;
 }
