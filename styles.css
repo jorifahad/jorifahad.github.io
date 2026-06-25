@@ -1034,50 +1034,66 @@
 }
 
 
-/* HERO NAME ONLY — keep every other section unchanged */
+/* FINAL NAME TYPOGRAPHY — only the hero name and spacing */
 .hero-redesign .hero-content {
-  max-width: 760px;
-  transform: translateY(-64px);
+  max-width: 720px;
+  transform: translateY(-54px);
 }
 
 .hero-redesign .hero-name {
   margin: 0;
-  line-height: .88;
-  letter-spacing: -.07em;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.hero-redesign .hero-name-top,
+.hero-redesign .hero-name-bottom {
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -.045em;
+  white-space: nowrap;
 }
 
 .hero-redesign .hero-name-top {
-  display: block;
-  white-space: nowrap;
+  font-size: clamp(4.3rem, 6.2vw, 7rem);
   color: #f7f8fc;
-  font-size: clamp(4.2rem, 6.15vw, 7rem);
-  font-weight: 900;
 }
 
 .hero-redesign .hero-name-bottom {
-  display: block;
-  margin-top: 18px;
-  font-size: clamp(5.2rem, 7.35vw, 8.1rem);
-  font-weight: 900;
-  line-height: .9;
-  background: linear-gradient(90deg, #697bff 0%, #8063ff 100%);
+  margin-top: 2px;
+  font-size: clamp(4.7rem, 6.7vw, 7.5rem);
+  background: linear-gradient(90deg, #7685ff 0%, #8a6fff 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+.hero-redesign .kicker {
+  margin-bottom: 26px;
+}
+
 .hero-redesign h2 {
-  margin-top: 34px;
-  font-size: clamp(1.75rem, 2.35vw, 2.85rem);
+  margin-top: 30px;
+  font-size: clamp(1.75rem, 2.35vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -.035em;
 }
 
 @media (max-width: 1120px) {
   .hero-redesign .hero-content {
-    transform: translateY(-20px);
+    transform: translateY(-18px);
   }
 
-  .hero-redesign .hero-name-top {
-    white-space: normal;
+  .hero-redesign .hero-name {
+    align-items: center;
+    margin-inline: auto;
   }
 }
 
@@ -1086,13 +1102,17 @@
     transform: none;
   }
 
+  .hero-redesign .hero-name-top,
+  .hero-redesign .hero-name-bottom {
+    white-space: normal;
+  }
+
   .hero-redesign .hero-name-top {
-    font-size: clamp(3rem, 14vw, 4.2rem);
+    font-size: clamp(3.3rem, 15vw, 4.6rem);
   }
 
   .hero-redesign .hero-name-bottom {
-    margin-top: 10px;
-    font-size: clamp(3.7rem, 17vw, 5rem);
+    font-size: clamp(3rem, 13.5vw, 4.2rem);
   }
 
   .hero-redesign h2 {
