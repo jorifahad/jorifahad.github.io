@@ -995,25 +995,3 @@
 .project-enterprise-ai .visual-image-fill::after {
   display: none;
 }
-
-
-/* FINAL — only Logistics RAG and Enterprise AI
-   No internal crop; move both images slightly upward. */
-.project-logistics-rag .visual-image-fill,
-.project-enterprise-ai .visual-image-fill {
-  background: #080d19;
-}
-
-.project-logistics-rag .visual-image-fill img,
-.project-enterprise-ai .visual-image-fill img {
-  width: 100% !important;
-  height: 104% !important;
-  object-fit: contain !important;
-  object-position: center center !important;
-  transform: translateY(-4%) !important;
-}
-
-.project-logistics-rag .visual-image-fill::after,
-.project-enterprise-ai .visual-image-fill::after {
-  display: none !important;
-}
