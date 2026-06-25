@@ -64,104 +64,18 @@ const projectVisuals = {
     </div>
   `,
   "arabic-news": `
-    <div class="cg-news">
-      <div class="cg-news-network">
-        <span>س</span><span>ر</span><span>ع</span><span>ق</span><span>ن</span>
-      </div>
-
-      <div class="cg-news-tools">
-        <div><b></b><span>TOKENIZATION</span></div>
-        <div><b></b><span>NER</span></div>
-        <div><b></b><span>TOPIC MODELING</span></div>
-        <div><b></b><span>SENTIMENT</span></div>
-        <div><b></b><span>SUMMARIZATION</span></div>
-      </div>
-
-      <div class="cg-news-panel">
-        <div class="cg-news-headline">
-          استثمارات تقنية جديدة لتعزيز التحول الرقمي
-        </div>
-
-        <div class="cg-news-body">
-          <i></i><i></i><i></i><i></i><i></i>
-        </div>
-
-        <div class="cg-news-topics">
-          <span>تقنية</span><span>اقتصاد</span><span>استثمار</span>
-        </div>
-
-        <div class="cg-news-fivew">
-          <b>من</b><b>ماذا</b><b>متى</b><b>أين</b><b>لماذا</b>
-        </div>
-
-        <div class="cg-news-confidence">
-          <span></span><strong>92%</strong>
-        </div>
-      </div>
+    <div class="project-card-image">
+      <img src="arabic-news-card.png" alt="Arabic News Understanding System visual">
     </div>
   `,
   "ood-scene": `
-    <div class="cg-ood">
-      <div class="cg-ood-left">
-        <h4>IN-DISTRIBUTION</h4>
-        <div class="cg-ood-thumb t1"></div>
-        <div class="cg-ood-thumb t2"></div>
-        <div class="cg-ood-thumb t3"></div>
-        <div class="cg-ood-thumb t4"></div>
-        <span class="cg-ood-check">✓</span>
-      </div>
-
-      <div class="cg-ood-center">
-        <div class="cg-ood-brain"></div>
-        <span class="cg-ood-beam blue"></span>
-        <span class="cg-ood-beam pink"></span>
-      </div>
-
-      <div class="cg-ood-right">
-        <h4>OUT-OF-DISTRIBUTION</h4>
-        <div class="cg-ood-thumb a1"></div>
-        <div class="cg-ood-thumb a2"></div>
-        <div class="cg-ood-thumb a3"></div>
-        <span class="cg-ood-alert">!</span>
-      </div>
-
-      <div class="cg-ood-particles"></div>
+    <div class="project-card-image">
+      <img src="ood-card.png" alt="Image Classification and OOD Scene Detection visual">
     </div>
   `,
   "mersad": `
-    <div class="cg-mersad">
-      <div class="cg-ms-grid"></div>
-
-      <div class="cg-ms-worker">
-        <div class="cg-ms-helmet"></div>
-        <div class="cg-ms-head"></div>
-        <div class="cg-ms-body"></div>
-        <div class="cg-ms-vest"></div>
-      </div>
-
-      <div class="cg-ms-detect">
-        <span class="tl"></span><span class="tr"></span>
-        <span class="bl"></span><span class="br"></span>
-        <b>ID: 87421</b>
-      </div>
-
-      <div class="cg-ms-panel">
-        <div><span>HELMET</span><b class="ok">DETECTED</b></div>
-        <div><span>SAFETY VEST</span><b class="ok">COMPLIANT</b></div>
-        <div><span>GLOVES</span><b class="warn">NOT DETECTED</b></div>
-        <div><span>SAFETY SHOES</span><b class="ok">COMPLIANT</b></div>
-        <div class="cg-ms-score"><span>COMPLIANCE SCORE</span><strong>75%</strong></div>
-      </div>
-
-      <div class="cg-ms-radar">
-        <i></i><i></i><i></i>
-      </div>
-
-      <div class="cg-ms-chart">
-        <i></i><i></i><i></i><i></i><i></i><i></i>
-      </div>
-
-      <div class="cg-ms-scan"></div>
+    <div class="project-card-image">
+      <img src="mersad-card.png" alt="MERSAD PPE monitoring visual">
     </div>
   `,
   "flight-delay": `
@@ -174,36 +88,8 @@ const projectVisuals = {
     </div>
   `,
   "tunnel-robot": `
-    <div class="cg-tunnel">
-      <div class="cg-tunnel-depth">
-        <span></span><span></span><span></span><span></span>
-      </div>
-
-      <div class="cg-tunnel-map">
-        <i></i><i></i><i></i>
-      </div>
-
-      <div class="cg-tunnel-robot">
-        <div class="cg-tr-antenna"></div>
-        <div class="cg-tr-lidar"></div>
-        <div class="cg-tr-body">
-          <span class="cg-tr-light"></span>
-        </div>
-        <div class="cg-tr-wheel w1"></div>
-        <div class="cg-tr-wheel w2"></div>
-        <div class="cg-tr-wheel w3"></div>
-        <div class="cg-tr-wheel w4"></div>
-      </div>
-
-      <div class="cg-tr-beam"></div>
-
-      <div class="cg-tr-radar">
-        <span></span><span></span><span></span>
-      </div>
-
-      <div class="cg-tr-stats">
-        <i></i><i></i><i></i><i></i><i></i>
-      </div>
+    <div class="project-card-image">
+      <img src="tunnel-robot-card.png" alt="Underground Tunnel Explorer Robot visual">
     </div>
   `,
   "bilingual-ocr": `
@@ -226,36 +112,8 @@ const projectVisuals = {
     </div>
   `,
   "enhanced-mbrec": `
-    <div class="cg-mbrec">
-      <div class="cg-mb-user">
-        <div class="cg-user-avatar"></div>
-        <span>USER</span>
-      </div>
-
-      <div class="cg-mb-actions">
-        <div class="pv"><b>◉</b><span>PV</span></div>
-        <div class="fav"><b>♥</b><span>FAV</span></div>
-        <div class="cart"><b>▰</b><span>CART</span></div>
-        <div class="buy"><b>▣</b><span>BUY</span></div>
-      </div>
-
-      <div class="cg-mb-core">
-        <div class="cg-core-ring ring1"></div>
-        <div class="cg-core-ring ring2"></div>
-        <div class="cg-core-ring ring3"></div>
-        <strong>GNN</strong>
-        <small>RECOMMENDATION ENGINE</small>
-      </div>
-
-      <div class="cg-mb-recommendations">
-        <h4>TOP-10<br>RECOMMENDATIONS</h4>
-        <div><span class="item i1"></span><i></i><i></i></div>
-        <div><span class="item i2"></span><i></i><i></i></div>
-        <div><span class="item i3"></span><i></i><i></i></div>
-        <div><span class="item i4"></span><i></i><i></i></div>
-      </div>
-
-      <div class="cg-mb-connections"></div>
+    <div class="project-card-image">
+      <img src="mbrec-card.png" alt="Enhanced MBRec Framework visual">
     </div>
   `
 };
