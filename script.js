@@ -3,13 +3,9 @@ const count = document.getElementById("project-count");
 
 const projectVisuals = {
   "mindwatch": `
-    <div class="mw-monitor">
-      <div class="mw-title">MULTIMODAL SIGNAL MONITOR</div>
-      <div class="mw-row"><span>EEG</span><i class="wave eeg"></i></div>
-      <div class="mw-row"><span>ECG</span><i class="wave ecg"></i></div>
-      <div class="mw-row"><span>EMG</span><i class="wave emg"></i></div>
-      <div class="mw-row"><span>MOTION</span><i class="wave motion"></i></div>
-      <div class="mw-risk">PRE-ICTAL PREDICTION · 15 MIN</div>
+    <div class="project-card-image animated-card-image">
+      <img src="mindwatch-card.png" alt="MindWatch multimodal signal monitor visual">
+      <span class="card-scanline"></span>
     </div>
   `,
   "logistics-rag": `
@@ -79,12 +75,9 @@ const projectVisuals = {
     </div>
   `,
   "flight-delay": `
-    <div class="flight-scene">
-      <div class="flight-path"></div>
-      <div class="plane">✈</div>
-      <div class="airport a">JED</div>
-      <div class="airport b">RUH</div>
-      <div class="delay-badge">DELAY RISK 18%</div>
+    <div class="project-card-image animated-card-image">
+      <img src="flight-delay-card.png" alt="Flight Delay Prediction visual">
+      <span class="card-scanline"></span>
     </div>
   `,
   "tunnel-robot": `
@@ -93,22 +86,15 @@ const projectVisuals = {
     </div>
   `,
   "bilingual-ocr": `
-    <div class="ocr-scene">
-      <div class="ocr-doc">
-        <div class="ocr-ar">تقرير طبي</div>
-        <div class="ocr-en">Medical Report</div>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="ocr-scanline"></div>
-      <div class="ocr-result">AR + EN · LAYOUT PRESERVED</div>
+    <div class="project-card-image animated-card-image">
+      <img src="bilingual-ocr-card.png" alt="Arabic-English OCR visual">
+      <span class="card-scanline"></span>
     </div>
   `,
   "orbscope": `
-    <div class="space-scene">
-      <div class="earth"></div>
-      <div class="orbit"></div>
-      <div class="satellite">◆</div>
-      <div class="space-label">EARTH OBSERVATION</div>
+    <div class="project-card-image animated-card-image">
+      <img src="orbscope-card.png" alt="OrbScope earth observation visual">
+      <span class="card-scanline"></span>
     </div>
   `,
   "enhanced-mbrec": `
