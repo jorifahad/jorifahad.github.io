@@ -981,3 +981,27 @@
 .visual-image-fill img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center;transform:scale(1.02);}
 .visual-image-fill::after{content:"";position:absolute;inset:auto 0 0 0;height:18%;background:linear-gradient(to top, rgba(8,13,25,.10), transparent);pointer-events:none;}
 @media(max-width:600px){.visual.visual-image-card{padding:0 !important;}}
+
+/* FINAL ADJUSTMENT: slightly reduce the outer spacing around homepage project images */
+.visual.visual-image-card {
+  padding: 6px !important;
+  background: #0a1020 !important;
+}
+
+.visual-image-fill {
+  border-radius: 20px !important;
+}
+
+.visual-image-fill img {
+  transform: scale(1.01);
+}
+
+@media (max-width: 600px) {
+  .visual.visual-image-card {
+    padding: 4px !important;
+  }
+
+  .visual-image-fill {
+    border-radius: 16px !important;
+  }
+}
