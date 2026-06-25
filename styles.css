@@ -1339,3 +1339,30 @@ header {
     border-radius: 24px;
   }
 }
+
+/* =========================================================
+   UNIFIED PAGE BACKGROUND
+   Keeps the homepage, project sections, and project pages
+   on the same dark background without visible color bands.
+   ========================================================= */
+html,
+body {
+  background: #01020b;
+}
+
+main,
+.section,
+.project,
+footer {
+  background: transparent;
+}
+
+header {
+  background: linear-gradient(#01020b 72%, transparent);
+}
+
+@media (max-width: 900px) {
+  header {
+    background: linear-gradient(rgba(1, 2, 11, .98) 78%, transparent);
+  }
+}
