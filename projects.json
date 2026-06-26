@@ -287,37 +287,15 @@
       "Automatic Speech Recognition",
       "Optical Character Recognition",
       "Text-to-Speech",
-      "Multimodal AI",
+      "Multimodal Content Conversion",
       "Accessibility Technology"
     ],
-    "short": "SawtAI is a bilingual accessibility platform that combines speech recognition, text-to-speech, and image text extraction in one interactive web application. It supports Arabic and English content and allows users to move easily between audio, editable text, images, and generated speech.",
-    "problem": "Arabic and English users often need separate tools to transcribe recordings, generate spoken audio, and extract text from images. Arabic OCR can also return words in an incorrect reading order, reducing the usability of the extracted text.",
-    "solution": "SawtAI brings three connected workflows into one interface. Speech to Text converts uploaded or recorded audio into editable text. Text to Speech generates downloadable audio from written Arabic or English content. Image to Speech extracts text from images, corrects Arabic right-to-left reading order, allows the user to edit the result, and converts it into speech.",
-    "models": "* **Speech Recognition:** OpenAI Whisper for Arabic and English transcription.\n* **Image Text Extraction:** EasyOCR for bilingual OCR.\n* **Arabic Reading Order:** Coordinate-based line grouping and right-to-left sorting.\n* **Speech Generation:** gTTS for downloadable MP3 audio.\n* **Application Development:** Python, Streamlit, PyTorch, OpenCV, Pillow, NumPy, and FFmpeg.",
-    "results": "Developed and deployed a complete bilingual application that supports browser-based voice recording, uploaded-audio transcription, editable outputs, image OCR, Arabic reading-order correction, speech generation, and downloadable TXT and MP3 files.",
+    "overview": "SawtAI is a bilingual accessibility platform that brings speech recognition, text-to-speech, and image text extraction into one interactive web application. It supports Arabic and English content and allows users to move easily between audio, editable text, images, and generated speech.",
+    "capabilities": "* Transcribes uploaded or recorded Arabic and English audio into editable text.\n* Converts written Arabic and English text into downloadable speech.\n* Extracts text from images and converts the extracted content into audio.\n* Corrects the reading order of Arabic OCR results from right to left.\n* Allows users to review, edit, listen to, and download generated outputs.",
+    "workflow": "The application provides three connected workflows. The Speech-to-Text section processes uploaded recordings or live browser audio using OpenAI Whisper. The Text-to-Speech section generates MP3 audio from written content using gTTS. The Image-to-Speech section detects Arabic and English text using EasyOCR, reconstructs the reading order, and sends the editable result to the speech-generation component.",
+    "technologies": "* OpenAI Whisper\n* EasyOCR\n* gTTS\n* PyTorch\n* OpenCV\n* Streamlit\n* FFmpeg\n* Python",
+    "outcome": "Developed and deployed a complete bilingual web application that combines speech transcription, speech generation, and image text recognition in one accessible interface. The platform supports editable results, downloadable text and audio files, browser-based voice recording, and improved Arabic OCR reading order.",
     "cardImage": "SawtAI.png",
-    "media": [
-      {
-        "type": "image",
-        "src": "interface.png",
-        "label": "Main Interface"
-      },
-      {
-        "type": "image",
-        "src": "speech.png",
-        "label": "Speech to Text"
-      },
-      {
-        "type": "video",
-        "src": "txt.mp4",
-        "label": "Text to Speech"
-      },
-      {
-        "type": "image",
-        "src": "Image.png",
-        "label": "Image to Speech"
-      }
-    ],
     "image": "interface.png",
     "demo": "https://arabic-english-speech-text-converter-ingheiww5pd3p4qmnzfb8w.streamlit.app/",
     "github": "https://github.com/jorifahad/arabic-english-speech-text-converter/tree/main",
