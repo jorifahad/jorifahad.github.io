@@ -54,10 +54,15 @@ function renderProjects(projects) {
 
 function sortProjects(mode) {
   const items = [...allProjects].sort((a, b) => {
+    // Keep MindWatch pinned as the main project.
+    if (a.id === "mindwatch" && b.id !== "mindwatch") return -1;
+    if (b.id === "mindwatch" && a.id !== "mindwatch") return 1;
+
     const ay = Number(a.year) || 0;
     const by = Number(b.year) || 0;
     return mode === "oldest" ? ay - by : by - ay;
   });
+
   renderProjects(items);
 }
 
