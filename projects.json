@@ -276,5 +276,51 @@
     "image": "ORB.png",
     "github": "https://www.figma.com/proto/juLULsOEuhuDDFNojK2cbm/ORBSCOPE?node-id=3-18&starting-point-node-id=41%3A3&t=ZPjHsrlxmrQJVhWG-1",
     "drive": "#"
+  },
+  {
+    "id": "sawtai",
+    "title": "SawtAI",
+    "subtitle": "Bilingual Speech, Text, and Image Accessibility Platform",
+    "year": "2025",
+    "focus": [
+      "Speech Processing",
+      "Automatic Speech Recognition",
+      "Optical Character Recognition",
+      "Text-to-Speech",
+      "Multimodal AI",
+      "Accessibility Technology"
+    ],
+    "short": "SawtAI is a bilingual accessibility platform that combines speech recognition, text-to-speech, and image text extraction in one interactive web application. It supports Arabic and English content and allows users to move easily between audio, editable text, images, and generated speech.",
+    "problem": "Arabic and English users often need separate tools to transcribe recordings, generate spoken audio, and extract text from images. Arabic OCR can also return words in an incorrect reading order, reducing the usability of the extracted text.",
+    "solution": "SawtAI brings three connected workflows into one interface. Speech to Text converts uploaded or recorded audio into editable text. Text to Speech generates downloadable audio from written Arabic or English content. Image to Speech extracts text from images, corrects Arabic right-to-left reading order, allows the user to edit the result, and converts it into speech.",
+    "models": "* **Speech Recognition:** OpenAI Whisper for Arabic and English transcription.\n* **Image Text Extraction:** EasyOCR for bilingual OCR.\n* **Arabic Reading Order:** Coordinate-based line grouping and right-to-left sorting.\n* **Speech Generation:** gTTS for downloadable MP3 audio.\n* **Application Development:** Python, Streamlit, PyTorch, OpenCV, Pillow, NumPy, and FFmpeg.",
+    "results": "Developed and deployed a complete bilingual application that supports browser-based voice recording, uploaded-audio transcription, editable outputs, image OCR, Arabic reading-order correction, speech generation, and downloadable TXT and MP3 files.",
+    "cardImage": "SawtAI.png",
+    "media": [
+      {
+        "type": "image",
+        "src": "interface.png",
+        "label": "Main Interface"
+      },
+      {
+        "type": "image",
+        "src": "speech.png",
+        "label": "Speech to Text"
+      },
+      {
+        "type": "video",
+        "src": "txt.mp4",
+        "label": "Text to Speech"
+      },
+      {
+        "type": "image",
+        "src": "Image.png",
+        "label": "Image to Speech"
+      }
+    ],
+    "image": "interface.png",
+    "demo": "https://arabic-english-speech-text-converter-ingheiww5pd3p4qmnzfb8w.streamlit.app/",
+    "github": "https://github.com/jorifahad/arabic-english-speech-text-converter/tree/main",
+    "drive": "#"
   }
 ]

@@ -1,3 +1,20 @@
+const projectMediaStyle = document.createElement("style");
+projectMediaStyle.textContent = `
+  .project-media-gallery { margin: 2rem 0 3rem; }
+  .project-media-stage { position: relative; overflow: hidden; width: 100%; aspect-ratio: 16 / 9; border: 1px solid rgba(139,145,255,.24); border-radius: 24px; background: #080c18; }
+  .project-media-slide { position: absolute; inset: 0; display: none; }
+  .project-media-slide.active { display: block; }
+  .project-media-slide img, .project-media-slide video { width: 100%; height: 100%; display: block; object-fit: contain; background: #080c18; }
+  .project-media-arrow { position: absolute; top: 50%; z-index: 4; width: 46px; height: 46px; border: 1px solid rgba(255,255,255,.24); border-radius: 50%; transform: translateY(-50%); background: rgba(7,11,24,.82); color: #fff; font-size: 30px; line-height: 1; cursor: pointer; backdrop-filter: blur(10px); }
+  .project-media-prev { left: 18px; }
+  .project-media-next { right: 18px; }
+  .project-media-tabs { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1rem; }
+  .project-media-tab { padding: .65rem 1rem; border: 1px solid rgba(139,145,255,.28); border-radius: 999px; background: rgba(13,19,38,.84); color: #cdd3e9; cursor: pointer; }
+  .project-media-tab.active { border-color: #8174ff; background: #8174ff; color: #fff; }
+  @media (max-width: 700px) { .project-media-stage { aspect-ratio: 4 / 3; border-radius: 18px; } .project-media-arrow { width: 40px; height: 40px; } }
+`;
+document.head.appendChild(projectMediaStyle);
+
 const projectContainer = document.getElementById("project");
 const projectId = new URLSearchParams(window.location.search).get("id");
 
@@ -115,6 +132,52 @@ function createProjectMedia(project) {
     return "";
   }
 
+  if (Array.isArray(project.media) && project.media.length > 0) {
+    const slides = project.media.map((item, index) => {
+      const activeClass = index === 0 ? " active" : "";
+      const label = escapeHtml(item.label || `${project.title} preview`);
+      const source = escapeHtml(item.src || "");
+
+      if (item.type === "video") {
+        return `
+          <div class="project-media-slide${activeClass}" data-slide="${index}">
+            <video controls playsinline preload="metadata" aria-label="${label}">
+              <source src="${source}" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="project-media-slide${activeClass}" data-slide="${index}">
+          <img src="${source}" alt="${label}">
+        </div>
+      `;
+    }).join("");
+
+    const tabs = project.media.map((item, index) => `
+      <button
+        class="project-media-tab${index === 0 ? " active" : ""}"
+        type="button"
+        data-media-index="${index}"
+      >
+        ${escapeHtml(item.label || `${index + 1}`)}
+      </button>
+    `).join("");
+
+    return `
+      <section class="project-media-gallery">
+        <div class="project-media-stage">
+          ${slides}
+          <button class="project-media-arrow project-media-prev" type="button" aria-label="Previous media">‹</button>
+          <button class="project-media-arrow project-media-next" type="button" aria-label="Next media">›</button>
+        </div>
+        <div class="project-media-tabs">${tabs}</div>
+      </section>
+    `;
+  }
+
   if (project.video && project.video !== "#") {
     return `
       <div class="cover video-cover">
@@ -138,6 +201,36 @@ function createProjectMedia(project) {
   }
 
   return `<div class="cover"></div>`;
+}
+
+function initialiseProjectMedia() {
+  const gallery = document.querySelector(".project-media-gallery");
+  if (!gallery) return;
+
+  const slides = Array.from(gallery.querySelectorAll(".project-media-slide"));
+  const tabs = Array.from(gallery.querySelectorAll(".project-media-tab"));
+  const previousButton = gallery.querySelector(".project-media-prev");
+  const nextButton = gallery.querySelector(".project-media-next");
+  let currentIndex = 0;
+
+  function showMedia(index) {
+    currentIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const isActive = slideIndex === currentIndex;
+      slide.classList.toggle("active", isActive);
+      if (!isActive) {
+        const video = slide.querySelector("video");
+        if (video) video.pause();
+      }
+    });
+    tabs.forEach((tab, tabIndex) => tab.classList.toggle("active", tabIndex === currentIndex));
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => showMedia(Number(tab.dataset.mediaIndex)));
+  });
+  previousButton?.addEventListener("click", () => showMedia(currentIndex - 1));
+  nextButton?.addEventListener("click", () => showMedia(currentIndex + 1));
 }
 
 function createResultImage(project) {
@@ -228,6 +321,8 @@ fetch("./projects.json")
         ${createButton(project.drive, "View Project Files", "ghost")}
       </div>
     `;
+
+    initialiseProjectMedia();
   })
   .catch((error) => {
     console.error(error);
