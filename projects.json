@@ -276,52 +276,5 @@
     "image": "ORB.png",
     "github": "https://www.figma.com/proto/juLULsOEuhuDDFNojK2cbm/ORBSCOPE?node-id=3-18&starting-point-node-id=41%3A3&t=ZPjHsrlxmrQJVhWG-1",
     "drive": "#"
-  },
-  {
-    "id": "sawtai",
-    "title": "SawtAI",
-    "subtitle": "Bilingual Speech, Text, and Image Accessibility Platform",
-    "year": "2025",
-    "focus": [
-      "Speech Processing",
-      "Automatic Speech Recognition",
-      "Optical Character Recognition",
-      "Text-to-Speech",
-      "Arabic–English Language Support",
-      "Multimodal Content Conversion",
-      "Accessibility Technology"
-    ],
-    "media": [
-      {
-        "type": "image",
-        "src": "interface.png",
-        "label": "Main Interface"
-      },
-      {
-        "type": "image",
-        "src": "speech.png",
-        "label": "Speech to Text"
-      },
-      {
-        "type": "video",
-        "src": "txt.mp4",
-        "label": "Text to Speech"
-      },
-      {
-        "type": "image",
-        "src": "Image.png",
-        "label": "Image to Speech"
-      }
-    ],
-    "image": "interface.png",
-    "demo": "https://arabic-english-speech-text-converter-ingheiww5pd3p4qmnzfb8w.streamlit.app/",
-    "github": "https://github.com/jorifahad/arabic-english-speech-text-converter/tree/main",
-    "drive": "#",
-    "overview": "SawtAI is a bilingual accessibility platform that brings speech recognition, text-to-speech, and image text extraction into one interactive web application. It supports Arabic and English content and allows users to move easily between audio, editable text, images, and generated speech.",
-    "capabilities": "* Transcribes uploaded or recorded Arabic and English audio into editable text.\n* Converts written Arabic and English text into downloadable speech.\n* Extracts Arabic and English text from images and converts it into audio.\n* Corrects the reading order of Arabic OCR results from right to left.\n* Allows users to review, edit, listen to, and download generated outputs.",
-    "workflow": "The application provides three connected workflows.\n\n* **Speech to Text:** Processes uploaded audio files or live browser recordings using OpenAI Whisper and returns editable Arabic or English transcription.\n* **Text to Speech:** Converts written Arabic or English content into downloadable MP3 audio using gTTS.\n* **Image to Speech:** Detects text in uploaded images using EasyOCR, reconstructs the reading order, and sends the editable result to the speech-generation component.",
-    "technologies": "* **OpenAI Whisper:** Arabic and English automatic speech recognition.\n* **EasyOCR:** Bilingual optical character recognition for image text extraction.\n* **Coordinate-Based Text Ordering:** Groups detected words into lines and corrects Arabic right-to-left reading order.\n* **gTTS:** Generates downloadable speech from Arabic and English text.\n* **Streamlit:** Provides the interactive web interface.\n* **Python, PyTorch, OpenCV, and FFmpeg:** Support model execution, image processing, and audio handling.",
-    "outcome": "Developed and deployed a complete bilingual web application that combines speech transcription, speech generation, and image text recognition in one accessible interface. The platform supports browser-based voice recording, editable results, Arabic OCR reading-order correction, and downloadable TXT and MP3 files."
   }
 ]
-

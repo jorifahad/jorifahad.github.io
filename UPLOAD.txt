@@ -1,3 +1,12 @@
-Replace: projects.json, script.js, project.js
-Add: SawtAI.png, interface.png, speech.png, txt.mp4, Image.png
-Then hard refresh with Ctrl+F5.
+Replace only:
+- projects.json
+- project.js
+
+Add to the repository root:
+- SawtAI.png
+- interface.png
+- speech.png
+- txt.mp4
+- Image.png
+
+Do not replace script.js, styles.css, index.html, or project.html.

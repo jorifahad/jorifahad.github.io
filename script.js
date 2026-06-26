@@ -1,173 +1,45 @@
-const sawtaiCoverStyles = document.createElement("style");
-sawtaiCoverStyles.textContent = `
-  .sawtai-cover-wrap { padding: 0 !important; overflow: hidden; background: #080b18; }
-  .sawtai-cover-image { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
-`;
-document.head.appendChild(sawtaiCoverStyles);
-
 const grid = document.getElementById("projects-grid");
 const count = document.getElementById("project-count");
 
-const projectVisuals = {
-  "mindwatch": `
-    <div class="mw-monitor">
-      <div class="mw-title">MULTIMODAL SIGNAL MONITOR</div>
-      <div class="mw-row"><span>EEG</span><i class="wave eeg"></i></div>
-      <div class="mw-row"><span>ECG</span><i class="wave ecg"></i></div>
-      <div class="mw-row"><span>EMG</span><i class="wave emg"></i></div>
-      <div class="mw-row"><span>MOTION</span><i class="wave motion"></i></div>
-      <div class="mw-risk">PRE-ICTAL PREDICTION · 15 MIN</div>
-    </div>
-  `,
-  "logistics-rag": `
-    <div class="rag-chat">
-      <div class="rag-chat-header">
-        <span class="rag-status"></span>
-        <div>
-          <strong>Logistics RAG Assistant</strong>
-          <small>Grounded answers from trusted documents</small>
-        </div>
-      </div>
 
-      <div class="rag-message rag-user-message">
-        Where is shipment 2048?
-      </div>
-
-      <div class="rag-message rag-ai-message">
-        <span class="rag-avatar">RAG</span>
-        <p>Retrieved from trusted logistics documents. Shipment is in transit to Jeddah Port.</p>
-      </div>
-
-      <div class="rag-sources">
-        <span>Source: Logistics Report</span>
-        <span>Page 12</span>
-      </div>
-    </div>
-  `,
-  "enterprise-ai": `
-    <div class="enterprise-chat">
-      <div class="enterprise-chat-header">
-        <span class="enterprise-status"></span>
-        <div>
-          <strong>Enterprise Assistant</strong>
-          <small>Secure internal AI</small>
-        </div>
-      </div>
-
-      <div class="enterprise-message user-message">
-        I need annual leave next week.
-      </div>
-
-      <div class="enterprise-message ai-message">
-        <span class="assistant-avatar">AI</span>
-        <p>Leave request prepared and the relevant policy was checked.</p>
-      </div>
-
-      <div class="enterprise-actions">
-        <span>IT Ticket</span>
-        <span>Leave Request</span>
-        <span>Policy Search</span>
-      </div>
-    </div>
-  `,
-  "arabic-news": `
-    <div class="news-scene">
-      <div class="news-ar">أخبار</div>
-      <div class="news-lines">
-        <span></span><span></span><span></span><span></span>
-      </div>
-      <div class="news-tags">تصنيف · تلخيص · 5W</div>
-    </div>
-  `,
-  "ood-scene": `
-    <div class="ood-scene-art">
-      <div class="ood-frame normal">IN-DISTRIBUTION</div>
-      <div class="ood-frame anomaly">OOD</div>
-      <div class="ood-scan"></div>
-    </div>
-  `,
-  "mersad": `
-    <div class="mersad-scene">
-      <div class="worker">
-        <div class="helmet"></div>
-        <div class="head"></div>
-        <div class="body"></div>
-      </div>
-      <div class="detect-box">HELMET · VEST</div>
-      <div class="safety-status">PPE DETECTED</div>
-    </div>
-  `,
-  "flight-delay": `
-    <div class="flight-scene">
-      <div class="flight-path"></div>
-      <div class="plane">✈</div>
-      <div class="airport a">JED</div>
-      <div class="airport b">RUH</div>
-      <div class="delay-badge">DELAY RISK 18%</div>
-    </div>
-  `,
-  "tunnel-robot": `
-    <div class="robot-scene">
-      <div class="tunnel tunnel-left"></div>
-      <div class="tunnel tunnel-right"></div>
-      <div class="robot">
-        <div class="robot-eye"></div>
-        <div class="robot-body"></div>
-        <div class="wheel w1"></div>
-        <div class="wheel w2"></div>
-      </div>
-      <div class="sensor-beam"></div>
-    </div>
-  `,
-  "bilingual-ocr": `
-    <div class="ocr-scene">
-      <div class="ocr-doc">
-        <div class="ocr-ar">تقرير طبي</div>
-        <div class="ocr-en">Medical Report</div>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="ocr-scanline"></div>
-      <div class="ocr-result">AR + EN · LAYOUT PRESERVED</div>
-    </div>
-  `,
-  "orbscope": `
-    <div class="space-scene">
-      <div class="earth"></div>
-      <div class="orbit"></div>
-      <div class="satellite">◆</div>
-      <div class="space-label">EARTH OBSERVATION</div>
-    </div>
-  `
+const projectCardImages = {
+  "mindwatch": "mindwatch-card.png",
+  "logistics-rag": "logistics-rag-card.png",
+  "enterprise-ai": "enterprise-ai-card.png",
+  "arabic-news": "arabic-news-card.png",
+  "ood-scene": "ood-card.png",
+  "mersad": "mersad-card.png",
+  "flight-delay": "flight-delay-card.png",
+  "tunnel-robot": "tunnel-robot-card.png",
+  "bilingual-ocr": "bilingual-ocr-card.png",
+  "orbscope": "orbscope-card.png",
+  "mbrec": "mbrec-card.png",
+  "enhanced-mbrec": "mbrec-card.png"
 };
 
-fetch("./projects.json")
-  .then((response) => {
-    if (!response.ok) throw new Error("Could not load projects.json");
-    return response.json();
-  })
-  .then((projects) => {
-    count.textContent = projects.length;
+let allProjects = [];
+const sortSelect = document.getElementById("project-sort");
 
-    grid.innerHTML = projects.map((project) => `
+function renderProjects(projects) {
+  if (!grid) return;
+  grid.innerHTML = projects.map((project) => {
+    const image = project.cardImage || projectCardImages[project.id] || project.image;
+    const visual = image
+      ? `
+        <div class="visual visual-image-card">
+          <div class="visual-image-fill">
+            <img src="${image}" alt="${project.title} preview">
+          </div>
+        </div>`
+      : `
+        <div class="visual visual-${project.id}">
+          <div class="visual-grid"></div>
+          <div class="visual-art"><div class="default-visual">AI</div></div>
+        </div>`;
+
+    return `
       <a class="card project-${project.id}" href="project.html?id=${encodeURIComponent(project.id)}">
-        ${
-          project.id === "sawtai"
-            ? `
-              <div class="visual visual-sawtai sawtai-cover-wrap">
-                <img class="sawtai-cover-image" src="SawtAI.png" alt="SawtAI project cover">
-              </div>
-            `
-            : `
-              <div class="visual visual-${project.id}">
-                <div class="visual-grid"></div>
-                <div class="visual-art">
-                  ${projectVisuals[project.id] || `<div class="default-visual">AI</div>`}
-                </div>
-                <div class="visual-label">${project.title}</div>
-              </div>
-            `
-        }
-
+        ${visual}
         <div class="pad">
           <p class="kicker">${project.year}</p>
           <h3>${project.title}</h3>
@@ -176,13 +48,39 @@ fetch("./projects.json")
             ${(project.focus || []).slice(0, 4).map((item) => `<span>${item}</span>`).join("")}
           </div>
         </div>
-      </a>
-    `).join("");
+      </a>`;
+  }).join("");
+}
+
+function sortProjects(mode) {
+  const items = [...allProjects].sort((a, b) => {
+    const ay = Number(a.year) || 0;
+    const by = Number(b.year) || 0;
+    return mode === "oldest" ? ay - by : by - ay;
+  });
+  renderProjects(items);
+}
+
+fetch("./projects.json")
+  .then((response) => {
+    if (!response.ok) throw new Error("Could not load projects.json");
+    return response.json();
+  })
+  .then((projects) => {
+    allProjects = Array.isArray(projects) ? projects : [];
+    if (count) count.textContent = allProjects.length;
+    sortProjects(sortSelect?.value || "newest");
   })
   .catch((error) => {
     console.error(error);
-    grid.innerHTML = `<p class="error-message">${error.message}</p>`;
+    if (grid) grid.innerHTML = `<p class="error-message">${error.message}</p>`;
   });
+
+if (sortSelect) {
+  sortSelect.addEventListener("change", (event) => {
+    sortProjects(event.target.value);
+  });
+}
 
 const canvas = document.getElementById("ai-network");
 
