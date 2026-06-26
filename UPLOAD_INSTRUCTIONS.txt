@@ -2,9 +2,11 @@ Replace:
 - projects.json
 - project.js
 
-Add:
+No change is required in script.js because it already supports cardImage from projects.json.
+
+Add to the portfolio root:
 - SawtAI.png
 - interface.png
-
-No change is needed in script.js.
-The live demo is enough to show the remaining features.
+- speech.png
+- txt.mp4
+- Image.png
