@@ -1,5 +1,29 @@
 [
   {
+    "id": "shadow-strike",
+    "title": "Shadow Strike",
+    "subtitle": "Adaptive Multiplayer Zombie FPS Game",
+    "year": "2026",
+    "focus": [
+      "Game Artificial Intelligence",
+      "Real-Time Multiplayer",
+      "Adaptive Difficulty",
+      "Network Synchronization",
+      "Three.js",
+      "Cooperative Gameplay"
+    ],
+    "short": "Shadow Strike is a browser-based cooperative zombie first-person shooter designed for two online players. The game combines private room-based multiplayer, shared mission progression, and adaptive enemy intelligence within a synchronized 3D environment.",
+    "problem": "A real-time cooperative game must keep player movement, enemy positions, combat events, health, and mission progress consistent across different devices despite network delay. The match must also continue when the player responsible for zombie simulation dies or disconnects, without causing enemies to freeze or the shared mission state to break.",
+    "solution": "The game uses a Node.js and Socket.IO server to manage private two-player rooms and synchronize gameplay events. One player acts as the authoritative host for zombie movement, while controlled snapshot updates and position interpolation reduce network traffic and smooth remote enemy motion.\n\nThe server tracks both players and automatically transfers host authority to the remaining living player after death or disconnection. A shared mission-state system keeps both players aligned through the first wave, power-restoration checkpoint, second wave, and extraction sequence.",
+    "models": "* **Adaptive Enemy AI:** Evaluates shooting accuracy, successful hits, elimination rate, remaining health, and damage received.\n* **Dynamic Difficulty:** Adjusts zombie movement speed, attack damage, detection range, separation, and flanking behavior.\n* **Real-Time Synchronization:** Shares player movement, rotation, health, shooting, damage, zombie states, and mission stages.\n* **Host Migration:** Transfers zombie-simulation authority when the current host dies or disconnects.\n* **Network Optimization:** Uses rate-limited zombie snapshots and interpolation to reduce lag and sudden movement.\n* **Development:** Three.js, TypeScript, Socket.IO, Node.js, Express, GLTF models, and Web Audio API.",
+    "results": "The final system delivers a complete two-player cooperative browser game with synchronized combat, adaptive enemies, shared mission progression, and continued gameplay after host death or disconnection.\n\n| Capability | Implemented Result |\n|---|---|\n| Multiplayer access | Private two-player rooms using shareable codes |\n| Match flow | Automatic start after the second player joins |\n| Gameplay synchronization | Shared movement, combat, health, zombies, and mission stages |\n| Adaptive AI | Dynamic enemy speed, damage, detection, and aggression |\n| Match continuity | Automatic host transfer after death or disconnection |\n| Network performance | Controlled snapshot frequency with smoother remote zombie motion |",
+    "cardImage": "shadow-strike-card.png",
+    "image": "Game.png",
+    "demo": "https://multiplayer-game-m7lx.onrender.com/",
+    "github": "https://github.com/jorifahad/shadow-strike-multiplayer-zombie-game",
+    "drive": "#"
+  },
+  {
     "id": "mindwatch",
     "title": "MindWatch",
     "subtitle": "Multimodal Seizure Prediction",
