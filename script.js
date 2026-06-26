@@ -38,7 +38,7 @@ function renderProjects(projects) {
         </div>`;
 
     return `
-      <a class="card project-${project.id}" href="project.html?id=${encodeURIComponent(project.id)}">
+      <a class="card project-${project.id}${project.id === "mindwatch" ? " featured-project" : ""}" href="project.html?id=${encodeURIComponent(project.id)}">
         ${visual}
         <div class="pad">
           <p class="kicker">${project.year}</p>
@@ -54,7 +54,6 @@ function renderProjects(projects) {
 
 function sortProjects(mode) {
   const items = [...allProjects].sort((a, b) => {
-    // Keep MindWatch pinned as the main project.
     if (a.id === "mindwatch" && b.id !== "mindwatch") return -1;
     if (b.id === "mindwatch" && a.id !== "mindwatch") return 1;
 

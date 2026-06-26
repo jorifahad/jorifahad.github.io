@@ -1,12 +1,1 @@
-Replace only:
-- projects.json
-- project.js
-
-Add to the repository root:
-- SawtAI.png
-- interface.png
-- speech.png
-- txt.mp4
-- Image.png
-
-Do not replace script.js, styles.css, index.html, or project.html.
+Replace only script.js and styles.css. MindWatch will span all three columns first; the other projects stay in the normal grid below.
