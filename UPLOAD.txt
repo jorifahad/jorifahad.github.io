@@ -1,0 +1,3 @@
+Replace: projects.json, script.js, project.js
+Add: SawtAI.png, interface.png, speech.png, txt.mp4, Image.png
+Then hard refresh with Ctrl+F5.
