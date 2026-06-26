@@ -200,13 +200,27 @@ fetch("./projects.json")
 
       ${createProjectMedia(project)}
 
-      ${createSection("Short Description", project.short)}
-      ${createSection("Problem", project.problem)}
-      ${createSection("Solution", project.solution)}
-      ${createSection("Models & Technologies", project.models)}
-      ${demoSection}
-      ${createSection("Results", project.results)}
-      ${createResultImage(project)}
+      ${
+        project.id === "shadow-strike"
+          ? `
+            ${createSection("About the Project", project.short)}
+            ${createSection("Why I Built It", project.why)}
+            ${createSection("Key Features", project.features)}
+            ${createSection("Technical Implementation", project.technical)}
+            ${createSection("Controls", project.controls)}
+            ${createSection("Project Outcome", project.outcome)}
+            ${demoSection}
+          `
+          : `
+            ${createSection("Short Description", project.short)}
+            ${createSection("Problem", project.problem)}
+            ${createSection("Solution", project.solution)}
+            ${createSection("Models & Technologies", project.models)}
+            ${demoSection}
+            ${createSection("Results", project.results)}
+            ${createResultImage(project)}
+          `
+      }
 
       <div class="actions">
         ${createButton(project.github, githubLabel, "button")}
