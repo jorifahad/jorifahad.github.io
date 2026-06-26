@@ -1,3 +1,22 @@
+
+const sawtaiMediaStyles = document.createElement("style");
+sawtaiMediaStyles.textContent = `
+  .sawtai-media-stage { position: relative; background: #080d19; }
+  .sawtai-media-slide { position: absolute; inset: 0; display: none; }
+  .sawtai-media-slide.active { display: block; }
+  .sawtai-media-slide img,
+  .sawtai-media-slide video {
+    width: 100%; height: 100%; display: block; object-fit: contain; background: #080d19;
+  }
+  .sawtai-media-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .sawtai-media-tab {
+    padding: 9px 13px; border: 1px solid #2d3856; border-radius: 999px;
+    background: #11182b; color: #f7f8fc; cursor: pointer;
+  }
+  .sawtai-media-tab.active { background: linear-gradient(135deg,#7384ff,#9a89ff); border-color: transparent; }
+`;
+document.head.appendChild(sawtaiMediaStyles);
+
 const projectContainer = document.getElementById("project");
 const projectId = new URLSearchParams(window.location.search).get("id");
 
@@ -115,6 +134,44 @@ function createProjectMedia(project) {
     return "";
   }
 
+  if (Array.isArray(project.media) && project.media.length) {
+    const slides = project.media.map((item, index) => {
+      const activeClass = index === 0 ? " active" : "";
+      const label = escapeHtml(item.label || `${project.title} preview`);
+      const source = escapeHtml(item.src || "");
+
+      if (item.type === "video") {
+        return `
+          <div class="sawtai-media-slide${activeClass}" data-index="${index}">
+            <video controls playsinline preload="metadata" aria-label="${label}">
+              <source src="${source}" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="sawtai-media-slide${activeClass}" data-index="${index}">
+          <img src="${source}" alt="${label}">
+        </div>
+      `;
+    }).join("");
+
+    const tabs = project.media.map((item, index) => `
+      <button class="sawtai-media-tab${index === 0 ? " active" : ""}" type="button" data-index="${index}">
+        ${escapeHtml(item.label || `${index + 1}`)}
+      </button>
+    `).join("");
+
+    return `
+      <div class="sawtai-media-gallery">
+        <div class="cover sawtai-media-stage">${slides}</div>
+        <div class="sawtai-media-tabs">${tabs}</div>
+      </div>
+    `;
+  }
+
   if (project.video && project.video !== "#") {
     return `
       <div class="cover video-cover">
@@ -138,6 +195,26 @@ function createProjectMedia(project) {
   }
 
   return `<div class="cover"></div>`;
+}
+
+function initialiseSawtAIMedia() {
+  const gallery = document.querySelector(".sawtai-media-gallery");
+  if (!gallery) return;
+
+  const slides = [...gallery.querySelectorAll(".sawtai-media-slide")];
+  const tabs = [...gallery.querySelectorAll(".sawtai-media-tab")];
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const selected = Number(tab.dataset.index);
+      slides.forEach((slide, index) => {
+        const active = index === selected;
+        slide.classList.toggle("active", active);
+        if (!active) slide.querySelector("video")?.pause();
+      });
+      tabs.forEach((item, index) => item.classList.toggle("active", index === selected));
+    });
+  });
 }
 
 function createResultImage(project) {
@@ -211,15 +288,24 @@ fetch("./projects.json")
             ${createSection("Project Outcome", project.outcome)}
             ${demoSection}
           `
-          : `
-            ${createSection("Short Description", project.short)}
-            ${createSection("Problem", project.problem)}
-            ${createSection("Solution", project.solution)}
-            ${createSection("Models & Technologies", project.models)}
-            ${demoSection}
-            ${createSection("Results", project.results)}
-            ${createResultImage(project)}
-          `
+          : project.id === "sawtai"
+            ? `
+              ${createSection("Overview", project.overview)}
+              ${createSection("Core Capabilities", project.capabilities)}
+              ${createSection("How It Works", project.workflow)}
+              ${createSection("Technologies", project.technologies)}
+              ${demoSection}
+              ${createSection("Key Outcome", project.outcome)}
+            `
+            : `
+              ${createSection("Short Description", project.short)}
+              ${createSection("Problem", project.problem)}
+              ${createSection("Solution", project.solution)}
+              ${createSection("Models & Technologies", project.models)}
+              ${demoSection}
+              ${createSection("Results", project.results)}
+              ${createResultImage(project)}
+            `
       }
 
       <div class="actions">
@@ -228,6 +314,8 @@ fetch("./projects.json")
         ${createButton(project.drive, "View Project Files", "ghost")}
       </div>
     `;
+
+    initialiseSawtAIMedia();
   })
   .catch((error) => {
     console.error(error);
